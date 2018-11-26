@@ -5,12 +5,15 @@ find_program(FLEX flex)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
 
-ADD_CUSTOM_COMMAND(OUTPUT sepgetpar_scan.c 
-   COMMAND flex -l ${CMAKE_CURRENT_SOURCE_DIR}/sepgetpar_scan.l 
-   COMMAND mv lex.yy.c sepgetpar_scan.c
-   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/sepgetpar_scan.l)
+#ADD_CUSTOM_COMMAND(OUTPUT sepgetpar_scan.c 
+ #  COMMAND flex -l ${CMAKE_CURRENT_SOURCE_DIR}/sepgetpar_scan.l 
+  # COMMAND mv lex.yy.c sepgetpar_scan.c
+  # DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/sepgetpar_scan.l)
 
 
+
+find_package(FLEX)
+FLEX_TARGET(MyScanner ${CMAKE_CURRENT_SOURCE_DIR}/sepgetpar_scan.l ${CMAKE_CURRENT_BINARY_DIR}/sepgetpar_scan.c)
 
 INCLUDE(TestBigEndian)
 
@@ -20,7 +23,7 @@ IF(${BIGENDIAN})
 ENDIF(${BIGENDIAN})
 
 
-set (SOURCES 	${CMAKE_CURRENT_BINARY_DIR}/sepgetpar_scan.c	 hcount.c	 puthead.c		   sepstrpar.c
+set (SOURCES 	 ${FLEX_MyScanner_OUTPUTS}	 hcount.c	 puthead.c		   sepstrpar.c
 auxclose.c	 head.c		 putlin.c		   sepstrput.c
 auxin.c		 helixcart.c	 redin.c		   sepstrscrdata.c
 auxpar.c	 hetch.c	 redout.c		   sepstrscrhead.c
