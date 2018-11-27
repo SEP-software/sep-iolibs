@@ -21,7 +21,7 @@ getheadertag.c	     getvalbname.c	putkey.c)
 
 
 if(CMAKE_Fortran_COMPILER)
-set(SOURCES ${SOURCE} sep3d.f90)
+set(SOURCES ${SOURCES} sep3d.f90)
 endif(CMAKE_Fortran_COMPILER)
 
 
