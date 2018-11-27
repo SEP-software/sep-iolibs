@@ -129,6 +129,8 @@ install(FILES
 install(EXPORT SEPlibTargets DESTINATION
   cmake COMPONENT dev)
 
+set(SEPCONFIGDIR "${CMAKE_CURRENT_BINARY_DIR})
+
 
 
 
