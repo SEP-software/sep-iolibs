@@ -6,7 +6,7 @@ set(INCLUDES
    sep_old_external.h
 	   sep_par.h	
 prototypes.h  	   sep_pars_external.h	
-	sulib.h
+	
 sep3dc.h      sep_fortran.h	   		superset.h
 sep3d.h       seplib.h		
       sep_main_external.h)
