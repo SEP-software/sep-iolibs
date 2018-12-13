@@ -130,6 +130,9 @@ install(FILES
 install(EXPORT SEPlibTargets DESTINATION
   cmake COMPONENT dev)
 
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/sepConfig.h DESTINATION include)
+
+
 set(SEPCONFIGDIR ${CMAKE_CURRENT_BINARY_DIR})
 
 
