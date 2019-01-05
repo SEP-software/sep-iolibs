@@ -2,7 +2,6 @@ project(SEPlib-io)
 cmake_minimum_required(VERSION 2.8)
 
 
-message("IN IO")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 set(CMAKE_POSITION_INDEPENDENT_CODE True)
 #
@@ -26,6 +25,10 @@ set(SEPlib-io_MAJOR_VERSION 9)
 set(SEPlib-io_MINOR_VERSION 0)
 set(SEPlib-io_VERSION_STRING
   ${SEPlib-io_MAJOR_VERSION}.${SEPlib-io_MINOR_VERSION})
+
+
+
+set(SEPlib_VERSION ${SEPlib-io_VERSION_STRING})
 enable_language(C OPTIONAL Fortran)
 
 set(CMAKE_Fortran_MODULE_DIRECTORY  ${CMAKE_INSTALL_PREFIX}/include)
@@ -116,16 +119,27 @@ configure_file (
 export(TARGETS sep sep3d superset FILE "${PROJECT_BINARY_DIR}/SEPlibTargets.cmake")
 export(PACKAGE SEPlib)
 
-configure_file(${PROJECT_SOURCE_DIR}/cmake/SEPlibConfig.cmake.in
-  "${PROJECT_BINARY_DIR}/cmake/SEPlibConfig.cmake" @ONLY)
-# ... for both
-configure_file(${PROJECT_SOURCE_DIR}/cmake/SEPlibConfigVersion.cmake.in
-  "${PROJECT_BINARY_DIR}/cmake/SEPlibConfigVersion.cmake" @ONLY)
 
-install(FILES
-  "${PROJECT_BINARY_DIR}/cmake/SEPlibConfig.cmake"
-  "${PROJECT_BINARY_DIR}/cmake/SEPlibConfigVersion.cmake"
-  DESTINATION "${SEPlib_DIRNAME_cmake}" COMPONENT dev)
+
+
+
+
+# cmake file
+configure_file (SEPlibConfig.cmake.in SEPlibConfig.cmake @ONLY)
+configure_file (SEPlibConfigVersion.cmake.in SEPlibConfigVersion.cmake @ONLY)
+
+
+install (FILES
+          ${CMAKE_CURRENT_BINARY_DIR}/SEPlibConfig.cmake
+          ${CMAKE_CURRENT_BINARY_DIR}/SEPlibConfigVersion.cmake
+    DESTINATION ${INSTALL_LIB_DIR}/cmake
+    COMPONENT Development)
+
+
+#install(FILES
+#  "${PROJECT_BINARY_DIR}/cmake/SEPlibConfig.cmake"
+#  "${PROJECT_BINARY_DIR}/cmake/SEPlibConfigVersion.cmake"
+#  DESTINATION "${SEPlib_DIRNAME_cmake}" COMPONENT dev)
 
 install(EXPORT SEPlibTargets DESTINATION
   cmake COMPONENT dev)
@@ -147,4 +161,3 @@ set(CPACK_PACKAGE_VERSION_PATCH "0")
 set(CPACK_PACKAGE_NAME "SEPlib-io")
 set(CPACK_PACKAGE_CONTACT "Robert Clapp")
 include(CPack)
-message("OUT IO")
