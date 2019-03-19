@@ -23,8 +23,16 @@ getheadertag.c	     getvalbname.c	putkey.c)
 if(CMAKE_Fortran_COMPILER)
 set(SOURCES ${SOURCES} sep3d.f90)
 endif(CMAKE_Fortran_COMPILER)
-
-
 add_library(sep3d ${SOURCES})
-TARGET_LINK_LIBRARIES(sep3d sep)
+target_link_libraries( sep3d sep)
+
+target_include_directories(sep3d
+	PRIVATE          
+	   ${CMAKE_CURRENT_SOURCE_DIR}/../include 
+	PUBLIC
+	   $<INSTALL_INTERFACE:include> 
+	   $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/../>
+	   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>  
+      )
 install(TARGETS sep3d DESTINATION lib EXPORT  SEPlibTargets)
+

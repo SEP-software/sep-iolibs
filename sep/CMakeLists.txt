@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.2)
 project(SEPLIB-base-lib-corelibs-sep)
 
 find_program(FLEX flex)
@@ -51,6 +51,13 @@ set(SOURCES ${SOURCES} sep.f90       sep_func.f90  sep_mod.f90  sep_par.f90
  sep_io.f90    )
 endif(CMAKE_Fortran_COMPILER)
 
-
 add_library(sep ${SOURCES})
+target_include_directories(sep  
+	PRIVATE          
+	   ${CMAKE_CURRENT_SOURCE_DIR}/../include 
+	PUBLIC
+	   $<INSTALL_INTERFACE:include> 
+	   $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/../>
+	   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+      )
 install(TARGETS sep DESTINATION lib EXPORT  SEPlibTargets)

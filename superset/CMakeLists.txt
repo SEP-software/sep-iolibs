@@ -23,14 +23,21 @@ endif(CMAKE_Fortran_COMPILER)
 
 
 add_library(superset ${SOURCES})
-target_link_libraries(superset sep3d sep)
-install(TARGETS superset DESTINATION lib EXPORT SEPlibTargets)
 
+target_include_directories(superset
+	PRIVATE          
+	   ${CMAKE_CURRENT_SOURCE_DIR}/../include 
+	PUBLIC
+	   $<INSTALL_INTERFACE:include> 
+	   $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/../>
+	   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>   
+      )
+install(TARGETS superset DESTINATION lib EXPORT  SEPlibTargets)
+target_link_libraries(superset sep3d sep)
 
 if(SU_LIBRARIES)
 include_directories(${SU_INCLUDES})
 set(SOURCE2 reed_su.c rite_su.c init_su.c)
 add_library(sepsu ${SOURCE2})
-target_link_libraries(sepsu sep3d sep)
 install(TARGETS sepsu DESTINATION lib)
 endif(SU_LIBRARIES)
