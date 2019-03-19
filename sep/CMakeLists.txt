@@ -52,6 +52,7 @@ set(SOURCES ${SOURCES} sep.f90       sep_func.f90  sep_mod.f90  sep_par.f90
 endif(CMAKE_Fortran_COMPILER)
 
 add_library(sep ${SOURCES})
+target_link_libraries(sep m)
 target_include_directories(sep  
 	PRIVATE          
 	   ${CMAKE_CURRENT_SOURCE_DIR}/../include 
