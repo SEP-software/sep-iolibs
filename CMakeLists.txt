@@ -1,22 +1,19 @@
 project(SEPlib-io)
 cmake_minimum_required(VERSION 3.2)
 
-
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 set(CMAKE_POSITION_INDEPENDENT_CODE True)
 #
-#  SEPLIB can be built with or without shared libraries.
-#  If shared libraries are desired, we suggest building
-#  with shared libraries first using
+# SEPLIB can be built with or without shared libraries. If shared libraries are
+# desired, we suggest building with shared libraries first using
 #
-#       cmake -DBUILD_SHARED_LIBS=True
+# cmake -DBUILD_SHARED_LIBS=True
 #
-#  and then rebuilding without shared libraries using
+# and then rebuilding without shared libraries using
 #
-#       cmake -DBUILD_SHARED_LIBS=False
+# cmake -DBUILD_SHARED_LIBS=False
 #
-#  so that the standard program executables are
-#  statically linked.
+# so that the standard program executables are statically linked.
 #
 set(CMAKE_SKIP_INSTALL_RPATH False)
 set(CMAKE_SKIP_RPATH False)
@@ -24,128 +21,100 @@ set(CMAKE_SKIP_RPATH False)
 set(SEPlib-io_MAJOR_VERSION 9)
 set(SEPlib-io_MINOR_VERSION 0)
 set(SEPlib-io_VERSION_STRING
-  ${SEPlib-io_MAJOR_VERSION}.${SEPlib-io_MINOR_VERSION})
-
-
+    ${SEPlib-io_MAJOR_VERSION}.${SEPlib-io_MINOR_VERSION})
 
 set(SEPlib_VERSION ${SEPlib-io_VERSION_STRING})
 enable_language(C OPTIONAL Fortran)
 
-set(CMAKE_Fortran_MODULE_DIRECTORY  ${CMAKE_INSTALL_PREFIX}/include)
+set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/include)
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -O2")
 
 set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -g -O2")
 
-#include_directories("${PROJECT_BINARY_DIR}")
-# Offer the user the choice of overriding the installation directories
-#set(INSTALL_LIB_DIR lib CACHE PATH "Installation directory for libraries")
-#set(INSTALL_CMAKE_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH
+# include_directories("${PROJECT_BINARY_DIR}") Offer the user the choice of
+# overriding the installation directories set(INSTALL_LIB_DIR lib CACHE PATH
+# "Installation directory for libraries") set(INSTALL_CMAKE_DIR
+# ${DEF_INSTALL_CMAKE_DIR} CACHE PATH
 
-
-#SET(SEPlib_DIRNAME_lib     ${CMAKE_INSTALL_PREFIX}/lib)
-#SET(SEPlib_DIRNAME_include ${CMAKE_INSTALL_PREFIX}/include)
-#SET(SEPlib_DIRNAME_cmake ${CMAKE_INSTALL_PREFIX}/cmake)
+# SET(SEPlib_DIRNAME_lib     ${CMAKE_INSTALL_PREFIX}/lib)
+# SET(SEPlib_DIRNAME_include ${CMAKE_INSTALL_PREFIX}/include)
+# SET(SEPlib_DIRNAME_cmake ${CMAKE_INSTALL_PREFIX}/cmake)
 
 find_package(SU)
 if(SU_LIBRARIES)
-set(SU_SUPPORT true)
+  set(SU_SUPPORT true)
 endif(SU_LIBRARIES)
 
-INCLUDE (CheckIncludeFiles)
-CHECK_INCLUDE_FILES(termios.h HAVE_TERMIOS_H)
-CHECK_INCLUDE_FILES(termio.h HAVE_TERMIO_H)
-CHECK_INCLUDE_FILES(stdio.h HAVE_STDIO_H)
-CHECK_INCLUDE_FILES(stdlib.h HAVE_STDLIB_H)
-CHECK_INCLUDE_FILES(string.h HAVE_STRING_H)
-CHECK_INCLUDE_FILES(strings.h HAVE_STRINGS_H)
-CHECK_INCLUDE_FILES(sys/ioctl.h HAVE_SYS_IOCTL_H)
-CHECK_INCLUDE_FILES(sys/file.h HAVE_SYS_FILE_H)
-CHECK_INCLUDE_FILES(sys/stat.h HAVE_SYS_STAT_H)
-CHECK_INCLUDE_FILES(sys/tape.h HAVE_SYS_TAPE_H)
-CHECK_INCLUDE_FILES(sys/uio.h HAVE_SYS_UIO_H)
-CHECK_INCLUDE_FILES(sgtty.h HAVE_SGTTY_H)
-CHECK_INCLUDE_FILES(signal.h HAVE_SIGNAL_H)
-CHECK_INCLUDE_FILES(sys/types.h HAVE_SYS_TYPES_H)
-CHECK_INCLUDE_FILES(sys/termios.h HAVE_SYS_TERMIOS_H)
-CHECK_INCLUDE_FILES(sys/utsname.h HAVE_SYS_UTSNAME_H)
-CHECK_INCLUDE_FILES(sys/param.h HAVE_SYS_PARAM_H)
-CHECK_INCLUDE_FILES(unistd.h HAVE_UNISTD_H)
-CHECK_INCLUDE_FILES(fcntl.h HAVE_FCNTL_H)
-CHECK_INCLUDE_FILES(dirent.h HAVE_DIRENT_H)
-CHECK_INCLUDE_FILES(sys/ndir.h HAVE_SYS_NDIR_H)
-CHECK_INCLUDE_FILES(sys/dir.h HAVE_SYS_DIR_H)
-CHECK_INCLUDE_FILES(ndir.h HAVE_NDIR_H)
-CHECK_INCLUDE_FILES(limits.h HAVE_LIMITS_H)
-CHECK_INCLUDE_FILES(errno.h HAVE_ERRNO_H)
-CHECK_INCLUDE_FILES(sys/socket.h HAVE_SYS_SOCKET_H)
-CHECK_INCLUDE_FILES(rpc/rpc.h HAVE_RPC_RPC_H)
-CHECK_INCLUDE_FILES(rpc/types.h HAVE_RPC_TYPES_H)
-CHECK_INCLUDE_FILES(ctime.h HAVE_CTIME_H)
-CHECK_INCLUDE_FILES(utime.h HAVE_UTIME_H)
-
- 
-
-
+include(CheckIncludeFiles)
+check_include_files(termios.h HAVE_TERMIOS_H)
+check_include_files(termio.h HAVE_TERMIO_H)
+check_include_files(stdio.h HAVE_STDIO_H)
+check_include_files(stdlib.h HAVE_STDLIB_H)
+check_include_files(string.h HAVE_STRING_H)
+check_include_files(strings.h HAVE_STRINGS_H)
+check_include_files(sys/ioctl.h HAVE_SYS_IOCTL_H)
+check_include_files(sys/file.h HAVE_SYS_FILE_H)
+check_include_files(sys/stat.h HAVE_SYS_STAT_H)
+check_include_files(sys/tape.h HAVE_SYS_TAPE_H)
+check_include_files(sys/uio.h HAVE_SYS_UIO_H)
+check_include_files(sgtty.h HAVE_SGTTY_H)
+check_include_files(signal.h HAVE_SIGNAL_H)
+check_include_files(sys/types.h HAVE_SYS_TYPES_H)
+check_include_files(sys/termios.h HAVE_SYS_TERMIOS_H)
+check_include_files(sys/utsname.h HAVE_SYS_UTSNAME_H)
+check_include_files(sys/param.h HAVE_SYS_PARAM_H)
+check_include_files(unistd.h HAVE_UNISTD_H)
+check_include_files(fcntl.h HAVE_FCNTL_H)
+check_include_files(dirent.h HAVE_DIRENT_H)
+check_include_files(sys/ndir.h HAVE_SYS_NDIR_H)
+check_include_files(sys/dir.h HAVE_SYS_DIR_H)
+check_include_files(ndir.h HAVE_NDIR_H)
+check_include_files(limits.h HAVE_LIMITS_H)
+check_include_files(errno.h HAVE_ERRNO_H)
+check_include_files(sys/socket.h HAVE_SYS_SOCKET_H)
+check_include_files(rpc/rpc.h HAVE_RPC_RPC_H)
+check_include_files(rpc/types.h HAVE_RPC_TYPES_H)
+check_include_files(ctime.h HAVE_CTIME_H)
+check_include_files(utime.h HAVE_UTIME_H)
 
 add_subdirectory(sep)
 add_subdirectory(sep3d)
 add_subdirectory(superset)
 add_subdirectory(include)
 
+configure_file("${PROJECT_SOURCE_DIR}/sepConfig.h.in"
+               "${PROJECT_BINARY_DIR}/sepConfig.h")
 
+#
 
-configure_file (
-  "${PROJECT_SOURCE_DIR}/sepConfig.h.in"
-  "${PROJECT_BINARY_DIR}/sepConfig.h"
-  )
+# export(TARGETS sep sep3d superset FILE
+# "${PROJECT_BINARY_DIR}/SEPlibTargets.cmake") export(PACKAGE SEPlib)
 
+include(CMakePackageConfigHelpers)
+configure_package_config_file(SEPlibConfig.cmake.in
+                              "${CMAKE_CURRENT_BINARY_DIR}/SEPlib.cmake"
+                              INSTALL_DESTINATION
+                              cmake/SEPlib)
 
+# cmake file configure_file (SEPlibConfig.cmake.in SEPlibConfig.cmake @ONLY)
+# configure_file (SEPlibConfigVersion.cmake.in SEPlibConfigVersion.cmake @ONLY)
 
-###################
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/SEPlibConfig.cmake
+        DESTINATION cmake/SEP/)
 
-#export(TARGETS sep sep3d superset FILE "${PROJECT_BINARY_DIR}/SEPlibTargets.cmake")
-#export(PACKAGE SEPlib)
+# install(FILES "${PROJECT_BINARY_DIR}/cmake/SEPlibConfig.cmake"
+# "${PROJECT_BINARY_DIR}/cmake/SEPlibConfigVersion.cmake" DESTINATION
+# "${SEPlib_DIRNAME_cmake}" COMPONENT dev)
 
-
-
-
-
-
-# cmake file
-#configure_file (SEPlibConfig.cmake.in SEPlibConfig.cmake @ONLY)
-#configure_file (SEPlibConfigVersion.cmake.in SEPlibConfigVersion.cmake @ONLY)
-
-
-#install (FILES
-#          ${CMAKE_CURRENT_BINARY_DIR}/SEPlibConfig.cmake
-#          ${CMAKE_CURRENT_BINARY_DIR}/SEPlibConfigVersion.cmake
-#    DESTINATION ${INSTALL_LIB_DIR}/cmake
-#    COMPONENT Development)
-
-
-#install(FILES
-#  "${PROJECT_BINARY_DIR}/cmake/SEPlibConfig.cmake"
-#  "${PROJECT_BINARY_DIR}/cmake/SEPlibConfigVersion.cmake"
-#  DESTINATION "${SEPlib_DIRNAME_cmake}" COMPONENT dev)
-
-install(EXPORT SEPlibTargets 
-  FILE
-    SEPlibTargets.cmake
-  NAMESPACE
-     SEPlib::
-  DESTINATION
-    cmake/SEPlib)
-
+install(EXPORT SEPlibTargets
+        FILE SEPlibTargets.cmake
+        NAMESPACE SEP:
+        DESTINATION cmake/SEP)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/sepConfig.h DESTINATION include)
 
-
 set(SEPCONFIGDIR ${CMAKE_CURRENT_BINARY_DIR})
-
-
-
-
 
 include(InstallRequiredSystemLibraries)
 set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
