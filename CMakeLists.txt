@@ -95,7 +95,7 @@ include(CMakePackageConfigHelpers)
 configure_package_config_file(SEPlibConfig.cmake.in
                               "${CMAKE_CURRENT_BINARY_DIR}/SEPlib.cmake"
                               INSTALL_DESTINATION
-                              cmake/SEPlib)
+                             ${CMAKE_CURRENT_BINARY_DIR})
 
 # cmake file configure_file (SEPlibConfig.cmake.in SEPlibConfig.cmake @ONLY)
 # configure_file (SEPlibConfigVersion.cmake.in SEPlibConfigVersion.cmake @ONLY)
