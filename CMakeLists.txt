@@ -88,8 +88,9 @@ configure_file("${PROJECT_SOURCE_DIR}/sepConfig.h.in"
 
 #
 
-# export(TARGETS sep sep3d superset FILE
-# "${PROJECT_BINARY_DIR}/SEPlibTargets.cmake") export(PACKAGE SEPlib)
+ export(TARGETS sep sep3d superset FILE
+ "${PROJECT_BINARY_DIR}/SEPlibTargets.cmake") 
+export(PACKAGE SEPlib)
 
 include(CMakePackageConfigHelpers)
 configure_package_config_file(SEPlibConfig.cmake.in
