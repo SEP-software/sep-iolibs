@@ -94,14 +94,10 @@ export(PACKAGE SEPlib)
 
 include(CMakePackageConfigHelpers)
 set(SEPlib_INCLUDE_DIR "include")
-configure_package_config_file(SEPlibConfig.cmake.in
-                              "${CMAKE_CURRENT_BINARY_DIR}/SEPlibConfig.cmake"
-                              INSTALL_DESTINATION
-                              cmake/SEP
 
-                              PATH_VARS SEPlib_INCLUDE_DIR
-)
-
+configure_file(
+SEPlibConfig.cmake.in "${CMAKE_CURRENT_BINARY_DIR}/SEPlibConfig.cmake"
+@ONLY)
 
 
 
