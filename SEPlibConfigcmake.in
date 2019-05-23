@@ -6,8 +6,8 @@ endif ()
 # Allows loading SEPlib settings from another project
 set (SEPlib_CONFIG_FILE "${CMAKE_CURRENT_LIST_FILE}")
 
-set (SEPlib_LIBRARY_DIRS @INSTALL_LIB_DIR@)
-set (SEPlib_INCLUDE_DIRS @INSTALL_INCLUDE_DIR@)
+set (SEPlib_LIBRARY_DIRS @CMAKE_INSTALL_FULL_LIBDIR@)
+set (SEPlib_INCLUDE_DIRS @CMAKE_INSTALL_FULL_INCLUDEDIR@)
 
 include ("${CMAKE_CURRENT_LIST_DIR}/SEPlibLibraryDepends.cmake")
 
