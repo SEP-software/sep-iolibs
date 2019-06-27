@@ -120,6 +120,9 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/sepConfig.h DESTINATION include)
 
 set(SEPCONFIGDIR ${CMAKE_CURRENT_BINARY_DIR})
 
+add_subdirectory(external/genericIO)
+
+
 include(InstallRequiredSystemLibraries)
 set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
 set(CPACK_PACKAGE_VERSION_MAJOR "${SEPlib-io_MAJOR_VERSION}")
