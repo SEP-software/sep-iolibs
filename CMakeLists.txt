@@ -119,8 +119,15 @@ install(EXPORT SEPlibTargets
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/sepConfig.h DESTINATION include)
 
 set(SEPCONFIGDIR ${CMAKE_CURRENT_BINARY_DIR})
+set(SEPLIB_BUILD yes)
+if(NOT TARGET sepVector)
+	execute_process(COMMAND git submodule update --init --recursive -- external/genericIO
+WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/genericIO)
+endif(NOT TARGET sepVector)
 
-add_subdirectory(external/genericIO)
+
+
 
 
 include(InstallRequiredSystemLibraries)
