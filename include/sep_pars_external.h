@@ -17,7 +17,7 @@ extern int getch_add_string(char*);
 extern int hetch(char*,char*,void*);
 extern void initpar(int,char**);
 extern int putch(char*,char*,void*);
-extern int auxputhead(char*,char*, ... );
+extern int auxputhead(const char*,const char*, ... );
 extern int puthead(char*, ... );
 extern int tetch(char*,char*, ... );
 extern int putlin(char*);

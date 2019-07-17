@@ -95,7 +95,7 @@ B<sep>
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
 /*VARARGS1*/
-int auxputhead(char *tag, char *fmt, ... )
+int auxputhead(const char *tag,const  char *fmt, ... )
 _XFUNCPROTOEND
 #else
 /*VARARGS0*/
@@ -105,7 +105,7 @@ va_dcl
 {
 #if NeedFunctionPrototypes
 #else
-	char *fmt,*tag;
+const	char *fmt,*tag;
 #endif
 	va_list apdum;
 
