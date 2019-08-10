@@ -41,11 +41,13 @@ set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -g -O2")
 # SET(SEPlib_DIRNAME_include ${CMAKE_INSTALL_PREFIX}/include)
 # SET(SEPlib_DIRNAME_cmake ${CMAKE_INSTALL_PREFIX}/cmake)
 
-
 if(NOT SUBPACKAGE)
   option(BUILD_TESTS "Build with test support" OFF)
- option(BUILD_DEBUG_LIBS "Build gperftool libs" OFF)
+  option(BUILD_DEBUG_LIBS "Build gperftool libs" OFF)
+  option(BUILD_GCP "Build GCP" OFF)
+
 else(NOT SUBPACKAGE)
+
 endif(NOT SUBPACKAGE)
 set(SUBPACKAGE true)
 
@@ -96,18 +98,15 @@ configure_file("${PROJECT_SOURCE_DIR}/sepConfig.h.in"
 
 #
 
- export(TARGETS sep sep3d superset FILE
- "${PROJECT_BINARY_DIR}/SEPlibTargets.cmake") 
+export(TARGETS sep sep3d superset
+       FILE "${PROJECT_BINARY_DIR}/SEPlibTargets.cmake")
 export(PACKAGE SEPlib)
 
 include(CMakePackageConfigHelpers)
 set(SEPlib_INCLUDE_DIR "include")
 
-configure_file(
-SEPlibConfig.cmake.in "${CMAKE_CURRENT_BINARY_DIR}/SEPlibConfig.cmake"
-@ONLY)
-
-
+configure_file(SEPlibConfig.cmake.in
+               "${CMAKE_CURRENT_BINARY_DIR}/SEPlibConfig.cmake" @ONLY)
 
 # cmake file configure_file (SEPlibConfig.cmake.in SEPlibConfig.cmake @ONLY)
 # configure_file (SEPlibConfigVersion.cmake.in SEPlibConfigVersion.cmake @ONLY)
@@ -129,14 +128,11 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/sepConfig.h DESTINATION include)
 set(SEPCONFIGDIR ${CMAKE_CURRENT_BINARY_DIR})
 set(SEPLIB_BUILD yes)
 if(NOT TARGET sepVector)
-	execute_process(COMMAND git submodule update --init --recursive -- external/genericIO
-WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/genericIO)
+  execute_process(COMMAND git submodule update --init --recursive --
+                          external/genericIO
+                  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/genericIO)
 endif(NOT TARGET sepVector)
-
-
-
-
 
 include(InstallRequiredSystemLibraries)
 set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
