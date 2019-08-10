@@ -41,6 +41,14 @@ set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -g -O2")
 # SET(SEPlib_DIRNAME_include ${CMAKE_INSTALL_PREFIX}/include)
 # SET(SEPlib_DIRNAME_cmake ${CMAKE_INSTALL_PREFIX}/cmake)
 
+
+if(NOT SUBPACKAGE)
+  option(BUILD_TESTS "Build with test support" OFF)
+ option(BUILD_DEBUG_LIBS "Build gperftool libs" OFF)
+else(NOT SUBPACKAGE)
+endif(NOT SUBPACKAGE)
+set(SUBPACKAGE true)
+
 find_package(SU)
 if(SU_LIBRARIES)
   set(SU_SUPPORT true)
