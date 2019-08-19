@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
-project(SEPLIB-base-include)
+
+set(CMAKE_MACOSX_RPATH 1)
 
 set(INCLUDES    
     sepcube.h	
@@ -14,13 +15,13 @@ sep3d.h       seplib.h
 set(SCRIPTS sep_doc_it)
 
 configure_file (
-  "${PROJECT_SOURCE_DIR}/su.h.in"
-  "${PROJECT_BINARY_DIR}/su.h"
+  "${CMAKE_CURRENT_SOURCE_DIR}/su.h.in"
+  "${CMAKE_CURRENT_SOURCE_DIR}/su.h"
   )
 
 configure_file (
-  "${PROJECT_SOURCE_DIR}/segy.h.in"
-  "${PROJECT_BINARY_DIR}/segy.h"
+  "${CMAKE_CURRENT_SOURCE_DIR}/segy.h.in"
+  "${CMAKE_CURRENT_SOURCE_DIR}/segy.h"
   )
 
 install(FILES ${INCLUDES} DESTINATION include)

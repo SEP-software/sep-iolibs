@@ -1,5 +1,6 @@
-cmake_minimum_required(VERSION 2.8)
-project(SEPLIB-base-lib-corelibs-sep3d)
+cmake_minimum_required(VERSION 3.2)
+set(CMAKE_MACOSX_RPATH 1)
+
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../../../include)

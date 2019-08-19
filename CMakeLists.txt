@@ -1,4 +1,8 @@
-project(SEPlib-io)
+if (POLICY CMP0048)
+  cmake_policy(SET CMP0048 NEW)
+endif (POLICY CMP0048)
+project(SEPlib-io-libs  VERSION 9.0.0 LANGUAGES CXX C Fortran)
+
 cmake_minimum_required(VERSION 3.2)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")

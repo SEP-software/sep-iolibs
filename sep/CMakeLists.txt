@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
-project(SEPLIB-base-lib-corelibs-sep)
+
+set(CMAKE_MACOSX_RPATH 1)
 
 find_program(FLEX flex)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
