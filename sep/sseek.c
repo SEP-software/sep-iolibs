@@ -369,7 +369,7 @@ if( info->ioinf == 0 ){
 	else whence_send=whence;
 
 
-	while(fabs(seek_request) > (sep_file_size_t)MAX_INT_SIZE){
+	while(llabs(seek_request) > (sep_file_size_t)MAX_INT_SIZE){
 		if(seek_request >0.) offset_send=(sep_off_t)MAX_INT_SIZE;
 		else offset_send=-(sep_off_t)MAX_INT_SIZE;
 		position_back = ((*info->seek_func)(info,info->ioinf, offset_send, whence_send ) );
