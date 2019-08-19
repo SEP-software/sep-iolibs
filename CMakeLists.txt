@@ -3,6 +3,10 @@ if (POLICY CMP0048)
 endif (POLICY CMP0048)
 project(SEPlib-io-libs  VERSION 9.0.0 LANGUAGES CXX C Fortran)
 
+if(NOT SUBPACKAGE)
+  option(BUILD_PYTHON "Build python interfaces" ON)
+endif()
+
 cmake_minimum_required(VERSION 3.2)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
