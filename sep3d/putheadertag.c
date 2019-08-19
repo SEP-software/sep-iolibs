@@ -83,6 +83,8 @@ History File */
       case( STREAMSOCKOUT ):
 	auxscr(tag_header);
 	break;
+       default:
+         break;
     }    
     return 0;
 }

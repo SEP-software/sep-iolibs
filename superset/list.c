@@ -304,6 +304,8 @@ switch( info->usage ){
     case( INPUT ): sepwarn(0," USAGE: INPUT \n"); break;
     case( OUTPUT ): sepwarn(0," USAGE: OUTPUT \n"); break;
     case( SCRATCH ): sepwarn(0," USAGE: SCRATCH \n"); break;
+    default:
+      break;
 }
 
 switch( info->data_format ){
@@ -312,6 +314,8 @@ switch( info->data_format ){
     case( COMPLEX ): sepwarn(0," DATA_TYPE: COMPLEX \n"); break;
     case( BYTE ): sepwarn(0," DATA_TYPE: BYTE \n"); break;
     case( UNKNOWN ): sepwarn(0," DATA_TYPE: UNKNOWN \n"); break;
+    default:
+      break;
 }
 
 
@@ -320,6 +324,8 @@ switch( info->file_format ){
     case( HEADER ): sepwarn(0," FILE_TYPE: HEADER \n"); break;
     case( GRID ): sepwarn(0," FILE_TYPE: GRID \n"); break;
     case( UNSPECIFIED ): sepwarn(0," FILE_TYPE: UNSPECIFIED \n"); break;
+    default:
+      break;
 }
 
 if(info->ndims >0){

@@ -75,6 +75,7 @@ switch(info->usage){
 	case(INPUT): strcpy(usage,"INPUT"); break;
 	case(OUTPUT): strcpy(usage,"OUTPUT"); break;
 	case(SCRATCH): strcpy(usage,"SCRATCH"); break;
+        default: break;
 }
 return(SUCCESS);
 }

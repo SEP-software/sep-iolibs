@@ -84,7 +84,7 @@ char **tag_header;
 
    if((info->headerformatfile) == SEPSTRNULL) {
       found=0;
-     if((info->entrytype == STREAMINOUT)){
+     if(info->entrytype == STREAMINOUT){
        if(auxpar("hff","s", tag_header_buf, tag_history) == 1){
          found=1;
          *tag_header= (char *) malloc(1+(int)strlen(tag_header_buf));
