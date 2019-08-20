@@ -35,6 +35,7 @@ target_include_directories(superset
       )
 install(TARGETS superset DESTINATION lib EXPORT  SEPlibTargets)
 target_link_libraries(superset sep3d sep)
+SET_TARGET_PROPERTIES(superset PROPERTIES LINKER_LANGUAGE Fortran)
 
 if(SU_LIBRARIES)
 include_directories(${SU_INCLUDES})

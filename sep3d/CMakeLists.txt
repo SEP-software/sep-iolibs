@@ -49,6 +49,7 @@ endif(CMAKE_Fortran_COMPILER)
 add_library(sep3d ${SOURCES})
 target_link_libraries(sep3d sep)
 
+SET_TARGET_PROPERTIES(sep3d PROPERTIES LINKER_LANGUAGE Fortran)
 target_include_directories(
   sep3d
   PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../include

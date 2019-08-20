@@ -13,6 +13,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
 
 
+
 find_package(FLEX)
 FLEX_TARGET(MyScanner ${CMAKE_CURRENT_SOURCE_DIR}/sepgetpar_scan.l ${CMAKE_CURRENT_BINARY_DIR}/sepgetpar_scan.c)
 
@@ -23,8 +24,12 @@ IF(${BIGENDIAN})
      ADD_DEFINITIONS(-DWORDS_BIGENDIAN)
 ENDIF(${BIGENDIAN})
 
+if(CMAKE_Fortran_COMPILER)
+set(SOURCES ${SOURCES} sep.f90       sep_func.f90  sep_mod.f90  sep_par.f90
+ sep_io.f90    )
+endif(CMAKE_Fortran_COMPILER)
 
-set (SOURCES 	 ${FLEX_MyScanner_OUTPUTS}	 hcount.c	 puthead.c		   sepstrpar.c
+set (SOURCES ${SOURCES} 	 ${FLEX_MyScanner_OUTPUTS}	 hcount.c	 puthead.c		   sepstrpar.c
 auxclose.c	 head.c		 putlin.c		   sepstrput.c
 auxin.c		 helixcart.c	 redin.c		   sepstrscrdata.c
 auxpar.c	 hetch.c	 redout.c		   sepstrscrhead.c
@@ -47,13 +52,11 @@ getputaxis.c	 putch.c	 sepstroutdata.c	   warn.c
 hclose.c	 putch_format.c  sepstrouthead.c)
 
 
-if(CMAKE_Fortran_COMPILER)
-set(SOURCES ${SOURCES} sep.f90       sep_func.f90  sep_mod.f90  sep_par.f90
- sep_io.f90    )
-endif(CMAKE_Fortran_COMPILER)
 
-add_library(sep ${SOURCES})
+add_library(sep ${SOURCES} )
+SET_TARGET_PROPERTIES(sep PROPERTIES LINKER_LANGUAGE Fortran)
 target_link_libraries(sep m)
+
 target_include_directories(sep  
 	PRIVATE          
 	   ${CMAKE_CURRENT_SOURCE_DIR}/../include 
