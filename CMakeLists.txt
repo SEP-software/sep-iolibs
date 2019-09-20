@@ -5,6 +5,7 @@ project(SEPlib-io-libs  VERSION 9.0.0 LANGUAGES CXX C Fortran)
 
 if(NOT SUBPACKAGE)
   option(BUILD_PYTHON "Build python interfaces" ON)
+  option(BUILD_TEST "Build tests" OFF)
 endif()
 
 cmake_minimum_required(VERSION 3.2)
