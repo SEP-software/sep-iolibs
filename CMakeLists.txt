@@ -61,7 +61,7 @@ set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/include)
 # SET(SEPlib_DIRNAME_cmake ${CMAKE_INSTALL_PREFIX}/cmake)
 
 if(NOT SUBPACKAGE)
-  option(BUILD_TESTS "Build with test support" OFF)
+  option(BUILD_TEST "Build with test support" OFF)
   option(BUILD_DEBUG_LIBS "Build gperftool libs" OFF)
   option(BUILD_GCP "Build GCP" OFF)
 
