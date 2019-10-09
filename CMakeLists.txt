@@ -51,7 +51,7 @@ set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/include)
 
 #set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -g -O2")
 
-include_directories("${CMAKE_BINARY_DIR}") 
+include_directories("${CMAKE_CURRENT_BINARY_DIR}") 
 
 #Offer the user the choice of
 # overriding the installation directories set(INSTALL_LIB_DIR lib CACHE PATH
