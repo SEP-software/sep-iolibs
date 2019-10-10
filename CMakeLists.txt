@@ -1,7 +1,7 @@
-if (POLICY CMP0048)
+if(POLICY CMP0048)
   cmake_policy(SET CMP0048 NEW)
-endif (POLICY CMP0048)
-project(SEPlib-io-libs  VERSION 9.0.0 LANGUAGES CXX C Fortran)
+endif(POLICY CMP0048)
+project(SEPlib-io-libs VERSION 9.0.0 LANGUAGES CXX C Fortran)
 
 if(NOT SUBPACKAGE)
   option(BUILD_PYTHON "Build python interfaces" ON)
@@ -47,16 +47,15 @@ enable_language(C OPTIONAL Fortran)
 
 set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/include)
 
-#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -O2")
+# set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -O2")
 
-#set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -g -O2")
+# set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -g -O2")
 
-include_directories("${CMAKE_CURRENT_BINARY_DIR}") 
+include_directories("${CMAKE_CURRENT_BINARY_DIR}")
 
-#Offer the user the choice of
-# overriding the installation directories set(INSTALL_LIB_DIR lib CACHE PATH
-# "Installation directory for libraries") set(INSTALL_CMAKE_DIR
-# ${DEF_INSTALL_CMAKE_DIR} CACHE PATH
+# Offer the user the choice of overriding the installation directories
+# set(INSTALL_LIB_DIR lib CACHE PATH "Installation directory for libraries")
+# set(INSTALL_CMAKE_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH
 
 # SET(SEPlib_DIRNAME_lib     ${CMAKE_INSTALL_PREFIX}/lib)
 # SET(SEPlib_DIRNAME_include ${CMAKE_INSTALL_PREFIX}/include)
@@ -109,7 +108,6 @@ check_include_files(rpc/types.h HAVE_RPC_TYPES_H)
 check_include_files(ctime.h HAVE_CTIME_H)
 check_include_files(utime.h HAVE_UTIME_H)
 
-
 add_subdirectory(sep)
 add_subdirectory(sep3d)
 add_subdirectory(superset)
@@ -150,9 +148,11 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/sepConfig.h DESTINATION include)
 set(SEPCONFIGDIR ${CMAKE_CURRENT_BINARY_DIR})
 set(SEPLIB_BUILD yes)
 if(NOT TARGET sepVector)
-  execute_process(COMMAND git submodule update --init --recursive --
-                          external/genericIO
-                  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+  if(NOT SUBPACKAGE)
+    execute_process(COMMAND git submodule update --init --recursive --
+                            external/genericIO
+                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+  endif(NOT SUBPACKAGE)
   add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/genericIO)
 endif(NOT TARGET sepVector)
 
