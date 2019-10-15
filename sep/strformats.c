@@ -53,7 +53,7 @@ char *str_format_name;
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
-int get_format_num( char *str)
+int get_format_num( const char *str)
 _XFUNCPROTOEND
 #else
 int get_format_num( str)
@@ -85,7 +85,7 @@ strcpy( ret, str_fmt_names[num] );
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
-void set_format( char *tag, char *format )
+void set_format(const  char *tag,const  char *format )
 _XFUNCPROTOEND
 #else
 void set_format( tag, format )
@@ -113,7 +113,7 @@ char* format;
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
-void set_output_data_format(  char *format )
+void set_output_data_format(  const char *format )
 _XFUNCPROTOEND
 #else
 void set_output_data_format(  format )
@@ -125,7 +125,7 @@ set_format("out",format);
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
-char* get_format( char *tag )
+char* get_format(const  char *tag )
 _XFUNCPROTOEND
 #else
 char* get_format( tag )

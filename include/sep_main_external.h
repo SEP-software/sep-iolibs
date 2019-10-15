@@ -10,7 +10,7 @@ extern "C" {
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
-extern char* get_format( char *tag );
+extern char* get_format( const char *tag );
 extern char *expandnm(char*,char*);
 extern void grab_history(const char *tag,char *buf, int nmax,int *nsize);
 extern char *datapath(char*);
@@ -43,7 +43,7 @@ extern int sreed_window(const char*,const int*,const int*,const int*,const int*,
 extern int srite_window(const char*,const int*,const int*,const int*,const int*,const int*,const int,const void*);
 extern int sep_window (const int,const char*,const int*, const int*,const int*,const int*,const int*,const int, void *);
 extern int snap( char*, int, int, void* );
-extern void set_format( char*, char* );
+extern void set_format( const char*, const char* );
 extern int slice (char*,int,int,int,void*);
 extern int sreed_raw(char*,void*,int);
 extern int sreed2(char*,void*,int,char*);
