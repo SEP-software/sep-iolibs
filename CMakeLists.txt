@@ -69,7 +69,6 @@ if(NOT SUBPACKAGE)
 else(NOT SUBPACKAGE)
 
 endif(NOT SUBPACKAGE)
-set(SUBPACKAGE true)
 
 find_package(SU)
 if(SU_LIBRARIES)
@@ -108,15 +107,29 @@ check_include_files(rpc/types.h HAVE_RPC_TYPES_H)
 check_include_files(ctime.h HAVE_CTIME_H)
 check_include_files(utime.h HAVE_UTIME_H)
 
-add_subdirectory(sep)
-add_subdirectory(sep3d)
-add_subdirectory(superset)
-add_subdirectory(include)
 
 configure_file("${PROJECT_SOURCE_DIR}/sepConfig.h.in"
                "${PROJECT_BINARY_DIR}/sepConfig.h")
 
 #
+set(SEPCONFIGDIR ${CMAKE_CURRENT_BINARY_DIR})
+set(SEPLIB_BUILD yes)
+if(NOT TARGET genericCpp AND NOT SUBPACKAGE)
+    execute_process(COMMAND git submodule update --init --recursive --
+                            external/genericIO
+                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+endif(NOT TARGET genericCpp AND NOT SUBPACKAGE)
+
+set(SUBPACKAGE true)
+add_subdirectory(sep)
+add_subdirectory(sep3d)
+add_subdirectory(superset)
+add_subdirectory(include)
+
+if(NOT TARGET genericCpp)
+  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/genericIO)
+endif(NOT TARGET genericCpp)
+
 
 export(TARGETS sep sep3d superset
        FILE "${PROJECT_BINARY_DIR}/SEPlibTargets.cmake")
@@ -145,16 +158,7 @@ install(EXPORT SEPlibTargets
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/sepConfig.h DESTINATION include)
 
-set(SEPCONFIGDIR ${CMAKE_CURRENT_BINARY_DIR})
-set(SEPLIB_BUILD yes)
-if(NOT TARGET sepVector)
-  if(NOT SUBPACKAGE)
-    execute_process(COMMAND git submodule update --init --recursive --
-                            external/genericIO
-                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-  endif(NOT SUBPACKAGE)
-  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/genericIO)
-endif(NOT TARGET sepVector)
+
 
 include(InstallRequiredSystemLibraries)
 set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
