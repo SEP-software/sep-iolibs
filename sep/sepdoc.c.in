@@ -268,7 +268,7 @@ else{
 			   perror("doc()");
 			   seperr("doc() unable to pipe to more command\n");
 			  }
-			while (c = *(name++)) putc(c,morein);
+			while ((c = *(name++))) putc(c,morein);
 			if(ferror(morein))
 			   {
 			    perror("doc()");

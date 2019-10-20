@@ -85,6 +85,8 @@ History File */
       case( STREAMSCR ):
 	auxscr(tag_grid);
 	break;
+      case( STREAMSOCKOUT ):
+        break;
     }    
 
     set_format(tag_grid,"xdr_int");

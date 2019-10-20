@@ -195,9 +195,9 @@ if(sep3dc->nkeys>0){
     sep3dc->nkeys,tag));
 
   for(i1=0; i1 < sep3dc->nkeys; i1++){
-    if(0!=sep3dc->keyname[i1],"data_record_number"){
-     if(0!= sep3d_set_key(tag,i1+1,sep3dc->keyname[i1],sep3dc->keytype[i1],
-       sep3dc->keyfmt[i1]))
+    if(0!=sep3dc->keyname[i1],"data_record_number" &&
+     0!= sep3d_set_key(tag,i1+1,sep3dc->keyname[i1],sep3dc->keytype[i1],
+       sep3dc->keyfmt[i1])){
        return(sepwarn(NOT_MET,"trouble setting key %d for tag %s \n",
          i1+1,tag));
     }

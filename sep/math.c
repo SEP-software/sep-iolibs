@@ -265,7 +265,7 @@ double *result;
 /*register char op;*/
 char op[16];
 strcpy(op,"RDFG");
-if ((tok_type== DELIMITER) && *token=='+' || *token == '-'){
+if ((tok_type== DELIMITER) && (*token=='+' || *token == '-')){
 	sprintf(op,"%c",*token);
 	get_token();
 }

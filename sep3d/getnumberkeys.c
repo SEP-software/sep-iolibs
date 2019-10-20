@@ -102,7 +102,7 @@ int *n_keys;
 
     if(info->n_key == -1){
 
-		if( ((info->entrytype == STREAMOUT)))
+		if( info->entrytype == STREAMOUT)
 			seperr("get_number_keys:Can not get number of keys from STREAMOUT \n");
 
 

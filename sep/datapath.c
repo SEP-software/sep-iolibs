@@ -267,6 +267,7 @@ struct utsname name;
 		}
 	}
 	
-	if(fclose(pathfile));
+	if(fclose(pathfile))
+;
 	return;
 	}

@@ -35,8 +35,9 @@ int sep_send_msg(char *status,char *extra) {
 
   if(gjob ==1 || gmach ==1 || gip ==1 || gport ==1){
     if(gjob !=1 || gmach !=1 || gip !=1 || gport !=1)
-      if(seperrit==1)
+      if(seperrit==1){
       seperr("when running in socket mode must provide jobid,mach_label,master_ip, and master_port %d %d %d %d",gjob,gmach,gip,gport);
+      }
       else {return(1);}
 
 

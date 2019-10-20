@@ -92,7 +92,7 @@ char **tag_grid;
 
  if((info->gridformatfile) == SEPSTRNULL) {
      found=0;
-     if((info->entrytype == STREAMINOUT)){
+     if(info->entrytype == STREAMINOUT){
        if(auxpar("gff","s", tag_grid_buf, tag_history) == 1){
           found=1;
           *tag_grid=expandnm(tag_grid_buf,(char*)NULL);

@@ -202,6 +202,9 @@ void fd_open( info , ioinfo )
 	case( STREAMINOUT ):
     		info->streamfile = fdopen(inf->fd,"r+");
         break;
+        case(STREAMSOCKOUT):
+        case(STREAMSCR):
+        break;
     }
     
 }

@@ -115,7 +115,8 @@ hash_item *getch_queue[GETCH_QUEUE_SIZE];
 int getch_queue_size = GETCH_QUEUE_SIZE;
 
 static int first_invoke = 1;
-extern int sepxargc; extern char **sepxargv;
+extern int sepxargc; 
+extern char **sepxargv;
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
