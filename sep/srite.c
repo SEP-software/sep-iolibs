@@ -54,7 +54,7 @@ external data formats to the internal data representation. For srite
 this defaults to "xdr_float". This may be overridden by
 "data_format=..." on the command line or (for tag="out" only) by a
 call to C<set_format(tag, "...")>  The valid types are "xdr_float",
-"xdr_integer", "xdr_byte", "native_float", "native_byte" and "vplot".
+"xdr_integer", "xdr_byte","native_double", "native_float", "native_byte" and "vplot".
 
 If the internal representation is larger than the representation of
 the external data then you must be careful to make nbytes the size
