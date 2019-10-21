@@ -28,14 +28,15 @@ extern int get_format_byte_length();
 #define FMT_NATIVE_BYTE 	3
 #define FMT_NATIVE_FLOAT 	4
 #define FMT_VPLOT 		5
-#define FMT_TMC_FLOAT		6
-#define FMT_TMC_BYTE		7
+#define FMT_NATIVE_DOUBLE		6
+#define FMT_TMC_FLOAT		7
+#define FMT_TMC_BYTE		8
 
-#define         NUM_FMT      8   /* FMT_NOT_KNOWN doesn't count */
+#define         NUM_FMT      9   /* FMT_NOT_KNOWN doesn't count */
 
 #define IS_XDR_FMT( x )  ( x> -1 && x< 3 ) 
 
-#define IS_TMC_FMT( x )  ( x> 5 && x< 8 ) 
+#define IS_TMC_FMT( x )  ( x> 6 && x< 9 ) 
 
 #endif
 

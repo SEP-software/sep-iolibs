@@ -10,7 +10,7 @@
 #include <sep_main_external.h>
 
 
-#define         FMT_LENGTH      13
+#define         FMT_LENGTH      16
 
 static char str_fmt_names[NUM_FMT][FMT_LENGTH] = {
                                         "xdr_float",
