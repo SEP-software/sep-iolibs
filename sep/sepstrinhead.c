@@ -300,7 +300,7 @@ static void open_infile(info) streaminf *info;
 #endif
 {
   struct stat statbuf;
-  fprintf(stderr, "in open infile %s \n", info->headername);
+  fprintf(stderr, "in open infile :%s: \n", info->headername);
   /* first stat the header file name */
   if (-1 == stat(info->headername, &statbuf)) {
     fprintf(stderr, "in2 open infile \n");
