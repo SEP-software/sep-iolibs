@@ -171,9 +171,7 @@ FILE *auxin(name) char *name;
 {
   streaminf *info;
 
-  fprintf(stderr, "BEFORE TAGINFO 1 %s \n", name);
   info = tag_info(name, TAG_IN);
-  fprintf(stderr, "AFTER TAGINFO 1 \n");
 
   if (info->entrytype == STREAMOUT) {
     seperr("auxin(\"%s\"): Already opened for output only\n", name);
@@ -187,21 +185,13 @@ FILE *auxin(name) char *name;
   if (info->entrytype == STREAMSCR) {
     seperr("auxin(\"%s\"): Already opened for scratch file\n", name);
   }
-  if (info->valid)
-    fprintf(stderr, "is valid \n");
-  else
-    fprintf(stderr, "is mot valid \n");
+
   if (info->valid && info->ioinf == 0) {
-    fprintf(stderr, "wjat t1  \n");
-
     (*info->open_func)(info, &(info->ioinf));
-    fprintf(stderr, "w1jat 1 \n ");
-
     if (!info->valid) {
       return 0;
     }
   }
-  fprintf(stderr, "wj2at 1  \n");
 
   return (info->streamfile);
 }

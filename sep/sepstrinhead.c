@@ -90,7 +90,6 @@ void sepstr_in_head(info) streaminf *info;
 
   assert(info->entrytype == STREAMIN);
 
-  fprintf(stderr, "in head \n");
   if (!noheader() || strcmp(info->tagname, "in") != 0) {
     /* input header */
     if (strchr(info->headername, '|') != 0) /* pipe  */
@@ -99,12 +98,8 @@ void sepstr_in_head(info) streaminf *info;
       open_insok(info);
     } else if (strcmp(info->headername, "stdin") == 0) { /* stdin */
       openstdin(info);
-    } else
-      fprintf(stderr, "in open infile \n");
-    /* file */
-    open_infile(info);
-
-    fprintf(stderr, "in2 open infile \n");
+    } else /* file */
+      open_infile(info);
 
     if (info->headfile == 0) {
       info->valid = 0;

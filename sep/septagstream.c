@@ -74,14 +74,9 @@ enum tagtype type;
 
   sepstr_addend(curr);
 
-  fprintf(stderr, "in tag stream\n");
   switch (curr->entrytype) {
     case STREAMIN:
-      fprintf(stderr, "in 2tag stream\n");
-
       sepstr_in_head(curr);
-      fprintf(stderr, "in 3tag stream\n");
-
       break;
     case STREAMOUT:
       sepstr_out_head(curr);
@@ -96,7 +91,6 @@ enum tagtype type;
       sepstr_scr_head(curr);
       break;
   }
-  fprintf(stderr, "in 4ag stream\n");
 
   return curr;
 }
