@@ -171,7 +171,7 @@ FILE *auxin(name) char *name;
 {
   streaminf *info;
 
-  fprintf(stderr, "wjaat 1 %s \n", name);
+  fprintf(stderr, "outof 1 %s \n", name);
   info = tag_info(name, TAG_IN);
   fprintf(stderr, "wjbat 1 \n");
 
@@ -190,7 +190,7 @@ FILE *auxin(name) char *name;
   if (info->valid)
     fprintf(stderr, "is valid \n");
   else
-    fpritf(stderr, "is mot valid \n");
+    fprintf(stderr, "is mot valid \n");
   if (info->valid && info->ioinf == 0) {
     fprintf(stderr, "wjat t1  \n");
 
