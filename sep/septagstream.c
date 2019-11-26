@@ -76,7 +76,10 @@ enum tagtype type;
 
   switch (curr->entrytype) {
     case STREAMIN:
+      fprintf(stderr, "before sepsetran in head\n");
       sepstr_in_head(curr);
+      fprintf(stderr, "befo2re sepsetran in head\n");
+
       break;
     case STREAMOUT:
       sepstr_out_head(curr);
