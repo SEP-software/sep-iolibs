@@ -96,6 +96,7 @@ enum tagtype type;
       sepstr_scr_head(curr);
       break;
   }
+  fprintf(stderr, "in 4ag stream\n");
 
   return curr;
 }
