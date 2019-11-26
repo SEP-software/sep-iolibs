@@ -87,8 +87,9 @@ void sepstr_in_head(info) streaminf *info;
 #endif
 {
   /* char titleline[256]; Never Used */
-
+  fprintf(stderr, "sepstrinhead\n");
   assert(info->entrytype == STREAMIN);
+  fprintf(stderr, "2sepstrinhead\n");
 
   if (!noheader() || strcmp(info->tagname, "in") != 0) {
     /* input header */
@@ -98,10 +99,15 @@ void sepstr_in_head(info) streaminf *info;
       open_insok(info);
     } else if (strcmp(info->headername, "stdin") == 0) { /* stdin */
       openstdin(info);
-    } else /* file */
-      open_infile(info);
+    } else /* file */ {
+      fprintf(stderr, "4sepstrinhead\n");
 
+      open_infile(info);
+      fprintf(stderr, "5sepstrinhead\n");
+    }
     if (info->headfile == 0) {
+      fprintf(stderr, "5seps6trinhead\n");
+
       info->valid = 0;
       return;
     }
