@@ -187,7 +187,10 @@ FILE *auxin(name) char *name;
   if (info->entrytype == STREAMSCR) {
     seperr("auxin(\"%s\"): Already opened for scratch file\n", name);
   }
-
+  if (info->valid)
+    fprintf(stderr, "is valid \n");
+  else
+    fpritf(stderr, "is mot valid \n");
   if (info->valid && info->ioinf == 0) {
     fprintf(stderr, "wjat t1  \n");
 
