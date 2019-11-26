@@ -107,8 +107,6 @@ void sepstr_in_head(info) streaminf *info;
     fprintf(stderr, "in2 open infile \n");
 
     if (info->headfile == 0) {
-      fprintf(stderr, "333 open infile \n");
-
       info->valid = 0;
       return;
     }
@@ -302,11 +300,8 @@ static void open_infile(info) streaminf *info;
 {
   struct stat statbuf;
 
-  fprintf(stderr, "in open infile \n");
   /* first stat the header file name */
   if (-1 == stat(info->headername, &statbuf)) {
-    fprintf(stderr, "in 222 infile \n");
-
     /* header does not exist */
     if (errno != ENOENT) { /* invalid name */
       perror("sepstrhead, openfile()");
@@ -317,9 +312,7 @@ static void open_infile(info) streaminf *info;
     info->headfile = 0;
 
   } else { /* header exists */
-           /* open for read */
-    fprintf(stderr, "33 222 infile \n");
-
+    /* open for read */
     info->headfile = fopen(info->headername, "r");
   }
 }
