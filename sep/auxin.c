@@ -185,10 +185,6 @@ FILE *auxin(name) char *name;
   if (info->entrytype == STREAMSCR) {
     seperr("auxin(\"%s\"): Already opened for scratch file\n", name);
   }
-  if (info->valid)
-    fprintf(stderr, "is valid \n");
-  else
-    fprintf(stderr, "is invalid\n");
 
   if (info->valid && info->ioinf == 0) {
     (*info->open_func)(info, &(info->ioinf));
