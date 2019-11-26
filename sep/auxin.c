@@ -171,9 +171,9 @@ FILE *auxin(name) char *name;
 {
   streaminf *info;
 
-  fprintf(stderr, "outof 1 %s \n", name);
+  fprintf(stderr, "BEFORE TAGINFO 1 %s \n", name);
   info = tag_info(name, TAG_IN);
-  fprintf(stderr, "wjbat 1 \n");
+  fprintf(stderr, "AFTER TAGINFO 1 \n");
 
   if (info->entrytype == STREAMOUT) {
     seperr("auxin(\"%s\"): Already opened for output only\n", name);
