@@ -10,7 +10,7 @@
 #include <sep_main_external.h>
 
 
-#define         FMT_LENGTH      13
+#define         FMT_LENGTH      16
 
 static char str_fmt_names[NUM_FMT][FMT_LENGTH] = {
                                         "xdr_float",
@@ -19,6 +19,7 @@ static char str_fmt_names[NUM_FMT][FMT_LENGTH] = {
                                         "native_float",
                                         "native_byte",
                                         "vplot",
+                                        "native_double",
                                         "tmc_float",
                                         "tmc_byte"
                                 };
@@ -30,6 +31,7 @@ static size_t str_fmt_byte_length[NUM_FMT] = {
 					sizeof(float),
 					sizeof(char),
 					0,
+					8,
 					4,
 					1
                                 };

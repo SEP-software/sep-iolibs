@@ -1,7 +1,7 @@
 /*
  * LOGIC:
  *         Maintain a simple list of streaminf structures.
- *         Predefined tags are "in", 
+ *         Predefined tags are "in",
  *	   "out", "head".  List is reordered on the
  *         fly to put most recently called tags at head of
  *         list.  New tags are added as necessary with a
@@ -39,90 +39,83 @@
 #include <sys/param.h>
 #define _NFILE NOFILE
 #endif
-#if defined(CONVEX) 
+#if defined(CONVEX)
 #include <limits.h>
 #define _NFILE OPEN_MAX
 #endif
 #endif
 
-
-#include "streamlist.h"
 #include <sep_main_external.h>
-    
+#include "streamlist.h"
+
 /* return streaminf pointer given input tag. 0 on error */
 /* second argument is 1 for read, 0 for write */
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
-streaminf * tag_info(const char *tag, enum tagtype type)
-_XFUNCPROTOEND
+streaminf *tag_info(const char *tag, enum tagtype type) _XFUNCPROTOEND
 #else
-streaminf * tag_info(tag,type)
-char *tag; enum tagtype type;
+streaminf *tag_info(tag, type) char *tag;
+enum tagtype type;
 #endif
 {
-    streaminf *curr;
+  streaminf *curr;
 
-    curr =sepstr_head();
+  curr = sepstr_head();
 
-    while( curr != 0 ){
-   	if( strcmp(tag,curr->tagname) == 0 ) return curr;
-		curr = curr->next;
-   }
+  while (curr != 0) {
+    if (strcmp(tag, curr->tagname) == 0) return curr;
+    curr = curr->next;
+  }
 
-   if(type==TAG_INQUIRE) return(0);
-    /* fell through so we must create it and put it at the end of the list*/
-    curr = sepstr_new( (char *) tag, type );
+  if (type == TAG_INQUIRE) return (0);
+  /* fell through so we must create it and put it at the end of the list*/
+  curr = sepstr_new((char *)tag, type);
 
+  sepstr_addend(curr);
 
-    sepstr_addend( curr ); 
+  switch (curr->entrytype) {
+    case STREAMIN:
+      sepstr_in_head(curr);
+      break;
+    case STREAMOUT:
+      sepstr_out_head(curr);
+      break;
+    case STREAMINOUT:
+      sepstr_inout_head(curr);
+      break;
+    case STREAMSOCKOUT:
+      sepstr_socket_head(curr);
+      break;
+    case STREAMSCR:
+      sepstr_scr_head(curr);
+      break;
+  }
 
-
-    switch( curr->entrytype ){
-     case STREAMIN:
-        sepstr_in_head( curr );
-        break;
-     case STREAMOUT:
-        sepstr_out_head( curr );
-        break;
-     case STREAMINOUT:
-        sepstr_inout_head( curr );
-        break;
-     case STREAMSOCKOUT:
-        sepstr_socket_head( curr );
-        break;
-     case STREAMSCR:
-        sepstr_scr_head( curr );
-        break;
-    }
-
-    return curr;
+  return curr;
 }
 
-    
 /* return streaminf pointer given file desriptor . 0 on error */
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
-streaminf * fd_info( int fd )
-_XFUNCPROTOEND
+streaminf *fd_info(int fd) _XFUNCPROTOEND
 #else
-streaminf * fd_info(fd)
-int fd;
+streaminf *fd_info(fd) int fd;
 #endif
 {
-    streaminf *curr;
+  streaminf *curr;
 
-    curr =sepstr_head();
+  curr = sepstr_head();
 
-    while( curr != 0 ){
-   	if( fd == fileno(curr->streamfile)	) {
-	    return curr;
-	}
-	curr = curr->next;
+  while (curr != 0) {
+    if (fd == fileno(curr->streamfile)) {
+      return curr;
     }
+    curr = curr->next;
+  }
 
-    /* fell through this is an error */
-    seperr("fd_info(): no stream has this file descriptor-> %d \n",fd );
-    return 0;
+  /* fell through this is an error */
+  seperr("fd_info(): no stream has this file descriptor-> %d \n", fd);
+  return 0;
 }
