@@ -1150,7 +1150,8 @@ if(0!=valid_structure(sep3dc))
   return(sepwarn(NOT_MET,
   "you are attempting to write out an invalid strucutre\n"));
 
-if(0==strcmp(sep3dc->data_format,"COMPLEX")) esize=8;
+if(0==strcmp(sep3dc->data_format,"COMPLEXDOUBLE")) esize=16;
+else if(0==strcmp(sep3dc->data_format,"COMPLEX")) esize=8;
 else esize=4;
 
 if(SEPNULL2 != data) write_data=1;
@@ -2234,7 +2235,9 @@ if(0!=valid_structure(sep3din))
   "you are attempting to get info on an invalid structure \n"));
 
 if(0==strcmp(sep3din->data_format,"FLOAT")) esize=4;
+else if(0==strcmp(sep3din->data_format,"DOUBLE")) esize=8;
 else if(0==strcmp(sep3din->data_format,"COMPLEX")) esize=8;
+else if(0==strcmp(sep3din->data_format,"COMPLEXDOUBLE")) esize=16;
 else if(0==strcmp(sep3din->data_format,"BYTE")) esize=1;
 else if(0==strcmp(sep3din->data_format,"INTEGER")) esize=4;
 
