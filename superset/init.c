@@ -68,8 +68,9 @@ sep_3d *input,*output;
 char temp_ch[1024];
 
 input = tag_info_sep3d(sep3din,INQUIRE);
-if(input==SEPNULL) {
-	return(sepwarn(FAIL_OTHER,"Invalid SEP3d structure to copy from (%s) \n",sep3din));
+	if(input==SEPNULL) {
+	
+		return(sepwarn(FAIL_OTHER,"Invalid SEP3d structure to copy from (%s) \n",sep3din));
 }
 
 /*FIRST INITIALIZE THE TAG */
@@ -103,6 +104,7 @@ else{
 }
 
 output = tag_info_sep3d(sep3dout,INQUIRE);
+
 if(output==SEPNULL) {
 	return(sepwarn(FAIL_OTHER,"Unable to create SEP3d structure \n"));
 }
@@ -458,6 +460,10 @@ switch(esize){
 		break;
 	case(8):
 		if(SUCCESS!=sep3d_set_data_type(sep3dout,"COMPLEX"))
+			return(sepwarn(FAIL_OTHER,"trouble setting datatype (%s) \n",sep3dout));
+		break;
+		case(16):
+		if(SUCCESS!=sep3d_set_data_type(sep3dout,"COMPLEXDOUBLE"))
 			return(sepwarn(FAIL_OTHER,"trouble setting datatype (%s) \n",sep3dout));
 		break;
 	case(4):
