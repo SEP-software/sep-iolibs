@@ -211,7 +211,7 @@ ierr= sep3d_grab_data_type(char *sep3dname,   char *data_type)
 
 INPUT PARAMETERS
 sep3dname -  char*   tag associated with sep_3d structure
-data_type -  char*   file type for the dataset (FLOAT, INTEGER, COMPLEX, or BYTE)
+data_type -  char*   file type for the dataset (FLOAT, INTEGER, COMPLEX,COMPLEXDOUBLE or BYTE)
 
 
 
@@ -256,6 +256,8 @@ switch(info->data_format){
 	case(FLOAT): strcpy(data_type,"FLOAT"); break;
 	case(INTEGER): strcpy(data_type,"INTEGER"); break;
 	case(COMPLEX): strcpy(data_type,"COMPLEX"); break;
+	case(COMPLEXDOUBLE): strcpy(data_type,"COMPLEXDOUBLE"); break;
+	case(DOUBLE): strcpy(data_type,"DOUBLE"); break;
 	case(BYTE): strcpy(data_type,"BYTE"); break;
 	case(UNKNOWN): strcpy(data_type,"UNKNOWN"); break;
 }
@@ -275,7 +277,7 @@ ierr= sep3d_set_data_type(char *sep3dname,   char *data_type)
 
 INPUT PARAMETERS
 sep3dname -  char*   tag associated with sep_3d structure
-data_type -  char*   file type for the dataset (FLOAT, INTEGER, COMPLEX, or BYTE)
+data_type -  char*   file type for the dataset (FLOAT, INTEGER, COMPLEX, DOUBLE, COMPLEXDOUBLE,  or BYTE)
 
 
 
@@ -318,6 +320,8 @@ _XFUNCPROTOEND
 	if(0==strcmp("FLOAT",data_type)) info->data_format=FLOAT;
 	else if(0==strcmp("INTEGER",data_type)) info->data_format=INTEGER;
 	else if(0==strcmp("COMPLEX",data_type)) info->data_format=COMPLEX;
+	else if(0==strcmp("DOUBLE",data_type)) info->data_format=DOUBLE;
+	else if(0==strcmp("COMPLEXDOUBLE",data_type)) info->data_format=COMPLEXDOUBLE;
 	else if(0==strcmp("BYTE",data_type)) info->data_format=BYTE;
 	else  return(sepwarn(INVALID_DATA,"Unknown file type %s for sep3dtag=%s \n",
    data_type,info->name));

@@ -15,7 +15,7 @@
 
 /* types of stream , the way a file is opened */
 enum usage_type { INPUT, OUTPUT, SCRATCH, INQUIRE };
-enum data_type { FLOAT, INTEGER, COMPLEX, BYTE, UNKNOWN};
+enum data_type { FLOAT, INTEGER, COMPLEX, BYTE, DOUBLE, COMPLEXDOUBLE,UNKNOWN};
 enum file_type { REGULAR, HEADER, GRID,UNSPECIFIED};
 
 typedef long long sep_coord_type;

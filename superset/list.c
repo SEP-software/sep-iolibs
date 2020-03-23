@@ -313,6 +313,8 @@ switch( info->data_format ){
     case( INTEGER ): sepwarn(0," DATA_TYPE: INTEGER \n"); break;
     case( COMPLEX ): sepwarn(0," DATA_TYPE: COMPLEX \n"); break;
     case( BYTE ): sepwarn(0," DATA_TYPE: BYTE \n"); break;
+    case( DOUBLE ): sepwarn(0," DATA_TYPE: DOUBLE \n"); break;
+    case( COMPLEXDOUBLE ): sepwarn(0," DATA_TYPE: COMPLEXDOULBE \n"); break;
     case( UNKNOWN ): sepwarn(0," DATA_TYPE: UNKNOWN \n"); break;
     default:
       break;
