@@ -241,7 +241,7 @@ void sepstr_ready_out( info )
      * the user has had their last chance to change it.
      * sreed will use whatever this format is now set to.
      */
-    fprint(stderr,"in here %s \n", get_format_name(info->format_num) ); 
+    fprintf(stderr,"in here %s \n", get_format_name(info->format_num) ); 
     sepstrput( info, "data_format", "s", get_format_name(info->format_num) );
     
     if(  strcmp(info->dataname,"follow_hdr") == 0 ){
