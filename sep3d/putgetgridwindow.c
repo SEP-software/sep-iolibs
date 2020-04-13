@@ -193,15 +193,15 @@ AUTHOR
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
-int sep_get_grid_window(char *tag_history, int *n_dim_grid, int *n_grid, 
-		int *n_wind,int *f_wind,int *j_wind, int *header_numbers)
+int sep_get_grid_window(const char *tag_history, const int *n_dim_grid, const int *n_grid, 
+		const int *n_wind,const int *f_wind,const int *j_wind, int *header_numbers)
 _XFUNCPROTOEND
 #else 
 int sep_get_grid_window(tag_history, n_dim_grid, n_grid, n_wind, f_wind, j_wind, header_numbers)
-char *tag_history;
-int  *n_dim_grid;
-int  *n_grid;
-int  *n_wind, *f_wind, *j_wind;
+const char *tag_history;
+const int  *n_dim_grid;
+const int  *n_grid;
+const int  *n_wind, *f_wind, *j_wind;
 int *header_numbers;
 #endif
 
@@ -242,15 +242,15 @@ return (ierr);
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
-int sep_put_grid_window(char *tag_history, int *n_dim_grid, int *n_grid, 
-		int *n_wind,int *f_wind,int *j_wind, int *header_numbers)
+int sep_put_grid_window(const char *tag_history,const  int *n_dim_grid, const int *n_grid, 
+		const int *n_wind,const int *f_wind,const int *j_wind, int *header_numbers)
 _XFUNCPROTOEND
 #else 
 int sep_put_grid_window(tag_history, n_dim_grid, n_grid, n_wind, f_wind, j_wind, header_numbers)
-char *tag_history;
-int  *n_dim_grid;
-int  *n_grid;
-int  *n_wind, *f_wind, *j_wind;
+const char *tag_history;
+const int  *n_dim_grid;
+const int  *n_grid;
+const int  *n_wind, *f_wind, *j_wind;
 int *header_numbers;
 #endif
 

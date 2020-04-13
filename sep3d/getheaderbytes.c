@@ -45,7 +45,7 @@ Bob-Dec'97: Changed key_first_byte to key_bytes
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
-int sep_get_header_bytes(char *tag_history, int *n_bytes)
+int sep_get_header_bytes(const char *tag_history, int *n_bytes)
 _XFUNCPROTOEND
 #else 
 int sep_get_header_bytes(tag_history, n_bytes)

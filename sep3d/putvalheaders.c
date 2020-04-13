@@ -81,17 +81,8 @@ AUTHOR
 */
 #include "sep3d.h"
 
-#if NeedFunctionPrototypes
-_XFUNCPROTOBEGIN
-int sep_put_val_headers(char *tag_history, int *record_number, int *n_headers,
-                        void *header_values) _XFUNCPROTOEND
-#else
-int sep_put_val_headers(tag_history, record_number, n_headers,
-                        header_values) char *tag_history;
-int *record_number;
-int *n_headers;
-void *header_values;
-#endif
+int sep_put_val_headers(const char *tag_history,const  int *record_number, const int *n_headers,
+                        void *header_values) 
 {
   char *tag_header[1];
   int n_bytes_value, n_head_bytes, seek_byte;

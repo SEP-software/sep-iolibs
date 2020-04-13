@@ -31,7 +31,7 @@ extern int sep_get_key_name(const char* tag, int* key_index, char* key_name);
 extern int sep_get_key_type(const char* tag, int* key_index, char* key_type);
 extern int sep_get_key_fmt(char* tag, int* key_index, char* key_fmt);
 extern int sep_get_key_first_byte(char* tag, int* key_index, int* key_byte);
-extern int sep_get_header_bytes(char* tag, int* n_bytes);
+extern int sep_get_header_bytes(const char* tag, int* n_bytes);
 extern int sep_copy_grid(char* in_tag, char* out_tag);
 
 extern int sep_put_header_format_tag(const char* tag_history, char* tag_header);
@@ -63,13 +63,13 @@ extern int sep_put_val_by_index(char *tag_history, int *record_number , int *key
 extern int sep_get_val_by_index(char *tag_history, int *record_number, int *key_index, int *n_values, void *values);
 extern int sep_put_val_by_name(char *tag_history, int *record_number, char *key_name, int *n_values, void *values);
 extern int sep_get_val_by_name(char *tag_history, int *record_number, char *key_name, int *n_values, void *values);
-extern int sep_put_val_headers(char *tag_history, int *record_number, int *n_headers, void *header_values);
+extern int sep_put_val_headers(const char *tag_history, const int *record_number,const  int *n_headers, void *header_values);
 extern int sep_get_val_headers(const char *tag_history, int *record_number, int *n_headers, void *header_values);
 extern int sep_insert_val_by_index(char *tag_history, int *key_index, int *n_values, void *values, void *all_values);
 extern int sep_extract_val_by_index(char *tag_history, int *key_index, int *n_values, void *values, void *all_values);
 
-extern int sep_put_grid_window(char *tag_history, int *n_dim_grid, int *n_grid, int *n_wind, int *f_wind, int *j_wind, int *header_numbers);
-extern int sep_get_grid_window(char *tag_history, int *n_dim_grid, int *n_grid, int *n_wind, int *f_wind, int *j_wind, int *header_numbers);
+extern int sep_put_grid_window(const char *tag_history,const  int *n_dim_grid, const int *n_grid, const int *n_wind, const int *f_wind,const  int *j_wind, int *header_numbers);
+extern int sep_get_grid_window(const char *tag_history, const int *n_dim_grid, const int *n_grid, const int *n_wind, const int *f_wind, const int *j_wind, int *header_numbers);
 
 extern int sep_copy_data_pointer(char *tag_in, char *tag_out);
 extern int sep_copy_header_keys(char *tag_in, char *tag_out);
