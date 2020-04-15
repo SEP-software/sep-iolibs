@@ -120,12 +120,12 @@ extern char **sepxargv;
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
-int getch( const char *tag, char *type, void *ptr )
+int getch( const char *tag,const  char *type, void *ptr )
 _XFUNCPROTOEND
 #else
 int
 getch(tag,type,ptr)
-char *tag, *type;
+const char *tag, *type;
 char* ptr;
 #endif
 {
