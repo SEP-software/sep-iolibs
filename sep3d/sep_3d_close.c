@@ -57,7 +57,31 @@ Purpose:
 #define EOL 014
 
 
+void sep3dClose(const char *tag)
+{ 
+char *tag_header[1];
+char *tag_grid[1];
+char temp_ch[1024];
+streaminf *info_history,*info_hff_in,*info_gff_in;
+streaminf *info_hff_out,*info_gff_out;
+int hff=0,gff=0,sock,timeout,ierr,next,whence;
+off_t seekpos;
 
+			if(0!=sep_get_header_format_tag(tag,tag_header))
+				seperr("sep3dclose(): trouble getting tag_header \n");
+     auxclose(tag_header[0]);
+			if(0!=sep_get_grid_format_tag(tag,tag_grid)){
+
+        auxclose(tag_grid[0]);
+    free(tag_grid[0]);
+  }
+free(tag_header[0]);
+auxclose(tag);
+	
+    }
+
+
+/*  $Id: sep_3d_close.c,v 1.2 2004/04/08 22:32:27 bob Exp $ */
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
 void sep_3d_close(void) 
@@ -214,3 +238,4 @@ return  ;
 
 
 /*  $Id: sep_3d_close.c,v 1.2 2004/04/08 22:32:27 bob Exp $ */
+

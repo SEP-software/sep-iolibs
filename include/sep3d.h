@@ -22,6 +22,7 @@ extern int sep_put_number_keys(const char* tag, int* nkeys);
 extern int sep_get_number_keys(const char* tag, int* nkeys);
 extern int sep_tag_is_pipe(char *tag);
 extern void sep_3d_close(void);
+extern void sep3dClose(const char *tag);
 extern void init_3d(void);
 
 
