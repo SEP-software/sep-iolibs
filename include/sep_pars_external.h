@@ -12,7 +12,7 @@ _XFUNCPROTOBEGIN
 extern int auxpar(const char*,const char*,void*,const char*);
 extern int auxputch(const char*,const char*,const void*,const char*);
 extern int fetch(char*,char*,void*);
-extern int getch(const char*,char*,void*);
+extern int getch(const char*,const char*,void*);
 extern int getch_add_string(const char*);
 extern int hetch(char*,char*,void*);
 extern void initpar(int,char**);
