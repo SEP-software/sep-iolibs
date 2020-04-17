@@ -75,7 +75,7 @@ void sep3dClose(const char *tag) {
     seperr("sep3dclose(): trouble getting tag_header \n");
   auxclose(tag_header[0]);
   if ((info_history->gridformatfile) != SEPSTRNULL) {
-    if (0 != sep_get_grid_format_tag(tag, tag_grid)) {
+    if (0 == sep_get_grid_format_tag(tag, tag_grid)) {
 
       auxclose(tag_grid[0]);
       free(tag_grid[0]);
