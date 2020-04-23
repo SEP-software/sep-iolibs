@@ -1,11 +1,8 @@
 cmake_minimum_required(VERSION 3.2)
 
 set(CMAKE_MACOSX_RPATH 1)
-find_program(FLEX flex)
+findflex()
 
-if(NOT FLEX)
-  message(FATAL_ERROR "Must install flex")
-endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
