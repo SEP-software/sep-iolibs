@@ -11,7 +11,7 @@ RUN apt-get -y update &&\
   apt-get -y clean
 RUN pip3 install scikit-build
  
-#RUN apt-get -y update&&\
-#  apt-get -y install flex libxaw7-dev  &&\
-#  apt-get -y clean
+RUN apt-get -y update&&\
+  apt-get -y install flex libxaw7-dev  &&\
+  apt-get -y clean
 
