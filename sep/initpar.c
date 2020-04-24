@@ -61,7 +61,7 @@ void initpar_f(const char *name) {
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
-void initpar(const int argc, const char **argv) _XFUNCPROTOEND
+void initpar(const int argc, char **argv) _XFUNCPROTOEND
 #else
 void initpar(argc, argv) int argc;
 char **argv;
