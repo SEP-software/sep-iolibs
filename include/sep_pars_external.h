@@ -7,8 +7,6 @@
 extern "C" {
 #endif
 
-#if NeedFunctionPrototypes
-_XFUNCPROTOBEGIN
 extern int auxpar(const char*,const char*,void*,const char*);
 extern int auxputch(const char*,const char*,const void*,const char*);
 extern int fetch(char*,char*,void*);
@@ -25,13 +23,9 @@ void initFromArgs(const int argc, const char **argv);
 void initFromName(const char *name);
 int getSepArgC();
 char **getSepArgV();
-_XFUNCPROTOEND
-
-#endif
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif
-/*  $Id: sep_pars_external.h,v 1.1.1.1 2004/03/25 06:37:22 cvs Exp $ */
