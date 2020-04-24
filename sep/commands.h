@@ -20,7 +20,7 @@ private:
   char **sepArgV;
 
 public:
-  void reset(const int argc, const char **argv);
+  void resetIt(const int argc, const char **argv);
   void setup(const int argc, const char **argv);
   void setup(const char *name);
   ~sepCommands() { ; }

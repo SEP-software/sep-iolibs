@@ -19,7 +19,7 @@ extern int auxputhead(const char*,const char*, ... );
 extern int puthead(char*, ... );
 extern int tetch(char*,char*, ... );
 extern int putlin(char*);
-void resetArgCV(const int argc, const char **argv);
+void resetSepArgCV(const int argc, const char **argv);
 void initFromArgs(const int argc, const char **argv);
 void initFromName(const char *name);
 int getSepArgC();
