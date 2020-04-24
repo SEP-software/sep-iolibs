@@ -2,6 +2,12 @@
 #include "sep_pars_external.h"
 
 std::shared_ptr<sepCommands> sepCommands::instance = nullptr;
+void sepCommands::reset(const int argc, const char **argv) {
+  for (int i = 0; i < argc; i++) 
+    free(sepArgV[i]);
+  free(sepArgV);
+   setup(argc,argv);
+}
 void sepCommands::setup(const int argc, const char **argv) {
   sepArgV = (char **)malloc(argc * sizeof(char *));
   sepArgC = argc;
@@ -22,3 +28,8 @@ void initFromArgs(const int argc, const char **argv) {
 void initFromName(const char *name) { sepCommands::getInstance()->setup(name); }
 int getSepArgC() { return sepCommands::getInstance()->getArgC(); }
 char **getSepArgV() { return sepCommands::getInstance()->getArgV(); }
+void resetSepArgCV(const int argc, const char **argv){
+
+  sepCommands::getInstance()->reset(argc, argv);
+
+}
