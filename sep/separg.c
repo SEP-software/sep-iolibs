@@ -62,9 +62,8 @@ B<sep>
 /*
  * Written Bob: 030426
  */
-#include "sepInternal.h"
 #include <sepConfig.h>
-#include <sep_main_external.h>
+#include <sep_pars_external.h>
 #include <stdio.h>
 #include <string.h>
 #if NeedFunctionPrototypes

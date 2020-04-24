@@ -104,7 +104,6 @@ B<sep>
  */
 
 #include "fastpar.h"
-#include "sepInternal.h"
 #include <sepConfig.h>
 #include <sep_pars_external.h>
 #include <stdlib.h>

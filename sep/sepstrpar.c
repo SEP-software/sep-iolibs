@@ -35,7 +35,6 @@
 #include <string.h>
 
 #include "fastpar.h"
-#include "sepInternal.h"
 #include "sepstream.h"
 #include <sepcube.h>
 

@@ -73,9 +73,9 @@ B<sep>
  * Revised: dave 9/17/90  Use stdarg for ANSI-C compilers
  * Revised: dave 10/9/91  renamed seperr
  */
-#include "sepInternal.h"
 #include <sepConfig.h>
 #include <sep_main_external.h>
+#include "sep_pars_external.h"
 #include <stdio.h>
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN

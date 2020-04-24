@@ -114,8 +114,8 @@ B<sep>
  * Modiefied 6/1/99   R.Clapp   CHangd to GNU standard for ifdef
  *
  */
-#include "sepInternal.h"
 #include <sepConfig.h>
+#include "sep_pars_external.h"
 #include <stdio.h>
 #include <stdlib.h>
 #ifdef HAVE_UNISTD_H

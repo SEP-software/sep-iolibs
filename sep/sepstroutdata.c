@@ -35,7 +35,6 @@
 #undef __STR__
 #endif
 
-#include "sepInternal.h"
 #include <string.h>
 #ifndef _NFILE
 #if defined(vax) || defined(sun)

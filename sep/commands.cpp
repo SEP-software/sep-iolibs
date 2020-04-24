@@ -1,5 +1,5 @@
 #include "commands.h"
-#include "sepInternal.h"
+#include "sep_main_external.h"
 
 std::shared_ptr<sepCommands> sepCommands::instance = nullptr;
 void sepCommands::setup(const int argc, const char **argv) {

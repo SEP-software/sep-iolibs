@@ -44,7 +44,6 @@ B<sep>
 /*
  * Author: Stewart A. Levin   MRDC  4/14/89
  */
-#include "sepInternal.h"
 #include <sepConfig.h>
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
@@ -61,12 +60,13 @@ void initpar_f(const char *name) {
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
-void initpar(const int argc, char **argv) _XFUNCPROTOEND
+void initpar(const int argc, char **argv) 
+_XFUNCPROTOEND
 #else
 void initpar(argc, argv) int argc;
 char **argv;
 #endif
 {
   int i;
-  initFromArgs(argc, argv);
+  initFromArgs(argc, (const char**) argv);
 }

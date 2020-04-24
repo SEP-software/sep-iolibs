@@ -20,8 +20,8 @@ Print program name, user, time and system in header file
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
-#include "sepInternal.h"
 #include "sep_main_internal.h"
+#include "sep_pars_external.h"
 #include <pwd.h>
 #include <stdio.h>
 #include <sys/types.h>
