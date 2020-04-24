@@ -68,7 +68,7 @@ extern int hcount(int);
 extern FILE *sep_head(void);
 extern char *alloc(size_t);
 extern int seploc(void*);
-extern void initpar_f(const char*);
+extern void initpar_f(char*);
 extern void c2h(int*,int*, int,int*);
 extern void h2c(int, int*, int,int*);
 extern int evaluate_expression(char *exp,int get_val(char *,double*),int nvals ,double *result);

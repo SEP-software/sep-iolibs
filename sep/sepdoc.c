@@ -220,7 +220,7 @@ int doc(name) char *name;
 #endif
   char first[1024];
 
-  if (sepArgC() == 1 && !redin()) {
+  if (getSepArgC() == 1 && !redin()) {
     if (prog_list != 0)
       page_doc();
     else {
