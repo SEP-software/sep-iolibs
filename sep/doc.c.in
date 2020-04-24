@@ -216,7 +216,6 @@ char *name;
 {
 	FILE *s,*morein;
 	int c,c1 ;
-	extern int sepxargc;
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
@@ -239,7 +238,7 @@ char first[1024];
 
 
 
-  if ( sepxargc == 1  &&  !redin() && !redout() ){
+  if ( getSepArgC() == 1  &&  !redin() && !redout() ){
   if(prog_list!=0)  page_doc();
 else{
 		if( strncmp(name,"/*",2) == 0 ||    /* C comment */

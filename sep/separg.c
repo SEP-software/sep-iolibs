@@ -12,11 +12,11 @@ C<ierr seperr(int iarg,char *arg)>
 
 =over 4
 
-=item	iarg -  int 
+=item	iarg -  int
 
       Argument number
 
-=item	char* -  arg 
+=item	char* -  arg
 
      Arrgument
 
@@ -26,15 +26,15 @@ C<ierr seperr(int iarg,char *arg)>
 
 =over 4
 
-=item	0 -  int 
+=item	0 -  int
 
       Success
 
-=item	1 -  int 
+=item	1 -  int
 
      Requested an argument # greater than separgc
 
-=item	-1 -  int 
+=item	-1 -  int
 
       Other failure
 
@@ -47,7 +47,7 @@ This function returns a command line argument by
 number. It makes this assumption that the string
 has been allocated.
 
-=head1 KEYWORDS 
+=head1 KEYWORDS
 
 
 =head1 LIBRARY
@@ -59,48 +59,46 @@ B<sep>
 
 
 */
-/*	
- * Written Bob: 030426 
+/*
+ * Written Bob: 030426
  */
+#include "sepInternal.h"
 #include <sepConfig.h>
-#include <string.h>
-#include <stdio.h>
 #include <sep_main_external.h>
+#include <stdio.h>
+#include <string.h>
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
-int separg( int iarg, char *arg)
-_XFUNCPROTOEND
+int separg(int iarg, char *arg) _XFUNCPROTOEND
 #else
 /*VARARGS0*/
-int separg(iarg, arg)
-int iarg;
+int separg(iarg, arg) int iarg;
 char *arg;
 #endif
 {
   extern int sepxargc;
-	extern char **sepxargv;
-  if(sepxargc <= iarg) return(1);
-  else strcpy(arg,sepxargv[iarg]);
+  extern char **sepxargv;
+  if (getSepArgC() <= iarg)
+    return (1);
+  else
+    strcpy(arg, getSepArgV()[iarg]);
   return 0;
 }
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
-int sep_prog( char *arg)
-_XFUNCPROTOEND
+int sep_prog(char *arg) _XFUNCPROTOEND
 #else
 /*VARARGS0*/
-int sep_prog(arg)
-char *arg;
+int sep_prog(arg) char *arg;
 #endif
 {
-	extern char **sepxargv;
   char *ourname;
 
-
-  if (NULL==(ourname=strrchr(sepxargv[0],'/'))) ourname=sepxargv[0];
-  else ourname++;
-  strcpy(arg,ourname);
+  if (NULL == (ourname = strrchr(getSepArgV()[0], '/')))
+    ourname = getSepArgV()[0];
+  else
+    ourname++;
+  strcpy(arg, ourname);
   return 0;
 }
-

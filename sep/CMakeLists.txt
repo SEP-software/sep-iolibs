@@ -39,6 +39,7 @@ auxputhead.c	 initpar.c	 separg.c		   sepstrsockethead.c
 datapath.c	 input.c	 sepdoc.c		   sepstrsync.c
 expandnm.c	 isapipe.c	 sep_err.c		   septagstream.c
 fd_io.c		  sepfile.c		   sepwindow.c
+commands.cpp
 fetch.c		 isclosed.c	 sepfsize.c		   slice.c
 file_io.c	 isordinary.c	 sepgetch.c		   snap.c
 findnm.c	 maketitle.c	 sepgetpar_decode.c	   sreed.c
@@ -52,9 +53,9 @@ getnumberaxes.c  output.c	 sepstrinouthead.c	   tetch.c
 getputaxis.c	 putch.c	 sepstroutdata.c	   warn.c
 hclose.c	 putch_format.c  sepstrouthead.c)
 
+set(INCLUDES commands.h)
 
-
-add_library(sep ${SOURCES} )
+add_library(sep ${SOURCES} ${INCLUDES} )
 SET_TARGET_PROPERTIES(sep PROPERTIES LINKER_LANGUAGE Fortran)
 target_link_libraries(sep m)
 

@@ -12,7 +12,7 @@ C<void seperr(string)>
 
 =over 4
 
-=item	char* -  string 
+=item	char* -  string
 
       C print statement, see comments
 
@@ -50,7 +50,7 @@ The system exit code used is -1.
 
 Fortran programmers can only pass string values.
 
-=head1 KEYWORDS 
+=head1 KEYWORDS
 
 error exit quit
 
@@ -63,19 +63,20 @@ B<sep>
 
 
 */
-/*	
- *	
+/*
+ *
  * Revised  4/23/84    stew     echo to stdout (header) as well
  * Revised  9/7/87     stew	<varargs> for portability
  * Revised  9/16/88    jclau    fvprintf instead to vprintf.
- * Modified 9/16/90  Dave Nichols  
+ * Modified 9/16/90  Dave Nichols
  *	   all compilers now have vfprintf or it is in compatability library.
- * Revised: dave 9/17/90  Use stdarg for ANSI-C compilers		
+ * Revised: dave 9/17/90  Use stdarg for ANSI-C compilers
  * Revised: dave 10/9/91  renamed seperr
  */
+#include "sepInternal.h"
 #include <sepConfig.h>
-#include <stdio.h>
 #include <sep_main_external.h>
+#include <stdio.h>
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
 #include <stdarg.h>
@@ -84,59 +85,57 @@ _XFUNCPROTOEND
 #include <varargs.h>
 #endif
 
-
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
 /*VARARGS1*/
-int seperr(const char *format, ... )
-_XFUNCPROTOEND
+int seperr(const char *format, ...) _XFUNCPROTOEND
 #else
 /*VARARGS0*/
-int seperr(va_alist)
-va_dcl
+int seperr(va_alist) va_dcl
 #endif
 {
-	va_list apdum;
+  va_list apdum;
 #if NeedFunctionPrototypes
 #else
-	char *format;
+  char *format;
 #endif
-	extern char **sepxargv;
 
 #if NeedFunctionPrototypes
- 	va_start(apdum,format);
+  va_start(apdum, format);
 #else
-	va_start(apdum);
-	format = va_arg(apdum,char *);
+  va_start(apdum);
+  format = va_arg(apdum, char *);
 #endif
-      sep_err_prog();
+  sep_err_prog();
 
-/*----- stderr -----*/
+  /*----- stderr -----*/
 
-        /* print out name of program causing error */
-	if( sepxargv ) fprintf( stderr, "%s: ", sepxargv[0] );
+  /* print out name of program causing error */
+  if (getSepArgV())
+    fprintf(stderr, "%s: ", getSepArgV()[0]);
 
-        /* print out remainder of message */
-	vfprintf( stderr, format, apdum );
-	fflush(stderr);
+  /* print out remainder of message */
+  vfprintf(stderr, format, apdum);
+  fflush(stderr);
 
-	va_end(apdum);
+  va_end(apdum);
 
-/*----- stdout -----*/
+  /*----- stdout -----*/
 
 #if NeedFunctionPrototypes
- 	va_start(apdum,format);
+  va_start(apdum, format);
 #else
-	va_start(apdum);
-	format = va_arg(apdum,char *);
+  va_start(apdum);
+  format = va_arg(apdum, char *);
 #endif
-        /* print out name of program causing error */
-	if( sepxargv ) fprintf( stdout, "%s: ", sepxargv[0] );
+  /* print out name of program causing error */
+  if (getSepArgV())
+    fprintf(stdout, "%s: ", getSepArgV()[0]);
 
-        /* print out remainder of message */
-	vfprintf( stdout, format, apdum );
-	fflush(stdout);
+  /* print out remainder of message */
+  vfprintf(stdout, format, apdum);
+  fflush(stdout);
 
-	va_end(apdum);
-	exit(23);
+  va_end(apdum);
+  exit(23);
 }

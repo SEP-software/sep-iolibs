@@ -11,11 +11,11 @@ C<initpar(argc,argv)> in  C,  C<call initpar()> in Fortran
 
 =over 4
 
-=item argc - int 
+=item argc - int
 
       standard C number of arguments
 
-=item argv - char** 
+=item argv - char**
 
       standard C argument List
 
@@ -31,7 +31,7 @@ main routine.
 
 L<getch>, L<hetch>, L<fetch>
 
-=head1 KEYWORDS 
+=head1 KEYWORDS
 
 initalize seplib getpar init
 
@@ -42,10 +42,10 @@ B<sep>
 =cut
 */
 /*
- * Author: Stewart A. Levin   MRDC  4/14/89   
+ * Author: Stewart A. Levin   MRDC  4/14/89
  */
+#include "sepInternal.h"
 #include <sepConfig.h>
-
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
@@ -53,35 +53,20 @@ B<sep>
 #include <string.h>
 #endif
 #include <sep_pars_external.h>
-int sepxargc;
-char **sepxargv;
-void initpar_f(char *name)
-{
-	int i;
- sepxargc=1;
- sepxargv = (char **) calloc(sepxargc,sizeof(char *));
- sepxargv[0] =(char*) malloc(strlen(name)+1);
- strcpy(sepxargv[0],name);
 
-
+void initpar_f(const char *name) {
+  int i;
+  initFromName(name);
 }
-
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
-void initpar(int argc, char** argv)
-_XFUNCPROTOEND
+void initpar(const int argc, const char **argv) _XFUNCPROTOEND
 #else
-void initpar(argc,argv)
-int argc;
+void initpar(argc, argv) int argc;
 char **argv;
 #endif
 {
-	int i;
- sepxargc=argc;
- sepxargv=argv;
- 
-
+  int i;
+  initFromArgs(argc, argv);
 }
-
-
