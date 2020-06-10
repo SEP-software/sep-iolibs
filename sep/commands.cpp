@@ -46,3 +46,12 @@ void haveArgs()
 {
   sepCommands::getInstance()->setHaveArgs();
 }
+int separg(const int iarg, char *val)
+{
+  sepCommands::getInstance()->getArg(iarg, val);
+  return 0;
+}
+int sep_prog(char *val)
+{
+  return separg(0, val);
+}

@@ -34,8 +34,6 @@ extern int noheader(void);
 extern int redin(void);
 extern int redout(void);
 extern int sepwarn(int wrn, const char *format, ... );
-extern int sep_prog( char *arg);
-extern int separg(int iarg, char *arg);
 extern int seperr( const char *format, ... );
 extern int sreed_window_new(const char*,const int,const int*,const int*,const int*,const int*,const int,void*);
 extern int srite_window_new(const char*,const int,const int*,const int*,const int*,const int*,const int,const void*);

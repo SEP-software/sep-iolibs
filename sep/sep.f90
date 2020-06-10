@@ -6,9 +6,7 @@ module sep
   implicit none
   integer,private :: ierr
   character(len=10),private :: putch_no,alt_putch
-  character(len=256),private :: altfile
-  
-  
+  character(len=256),private :: altfile  
 
 !!$
 !!$=head1 NAME

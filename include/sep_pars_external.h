@@ -26,6 +26,8 @@ extern "C"
     void initFromName(const char *name);
     int getSepArgC();
     char **getSepArgV();
+    int separg(const int, char *);
+    int sep_prog(char *arg);
     bool doDoc();
     void haveArgs();
 #ifdef __cplusplus

@@ -35,7 +35,7 @@ auxclose.c	 head.c		 putlin.c		   sepstrput.c
 auxin.c		 helixcart.c	 redin.c		   sepstrscrdata.c
 auxpar.c	 hetch.c	 redout.c		   sepstrscrhead.c
 auxputch.c	 init_io.c	 sepalloc.c		   sepstrsocketdata.c
-auxputhead.c	 initpar.c	 separg.c		   sepstrsockethead.c
+auxputhead.c	 initpar.c	    sepstrsockethead.c
 datapath.c	 input.c	 sepdoc.c		   sepstrsync.c
 expandnm.c	 isapipe.c	 sep_err.c		   septagstream.c
 fd_io.c		  sepfile.c		   sepwindow.c

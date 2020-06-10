@@ -6,7 +6,8 @@
 /*!
   Class for accessing IO from fortran. Singleton class
   */
-class sepCommands {
+class sepCommands
+{
 private:
   /*!
     Initialize default fortran object
@@ -17,22 +18,32 @@ private:
   sepCommands &operator=(const sepCommands &rs);
   static std::shared_ptr<sepCommands> instance;
   int sepArgC;
-  bool noArgs=true;
+  bool noArgs = true;
   char **sepArgV;
 
 public:
   void resetIt(const int argc, const char **argv);
-  void setHaveArgs(){ noArgs=false;}
+  void setHaveArgs() { noArgs = false; }
   void setup(const int argc, const char **argv);
   void setup(const char *name);
   ~sepCommands() { ; }
   char **getArgV() { return sepArgV; }
   int getArgC() { return sepArgC; }
-  bool haveNoArgs(){
+  bool haveNoArgs()
+  {
     return noArgs;
   }
-  static std::shared_ptr<sepCommands> &getInstance() {
-    if (!instance) {
+  void getArg(const int iarg, char *buf)
+  {
+    if (iarg >= sepArgC)
+      strcpy(buf, "");
+    else
+      strcpy(buf, sepArgV[iarg]);
+  }
+  static std::shared_ptr<sepCommands> &getInstance()
+  {
+    if (!instance)
+    {
       instance.reset(new sepCommands());
     }
 
