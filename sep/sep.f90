@@ -592,7 +592,7 @@ contains
        call get_command_argument(i,tmp)
        call getch_add_string(trim(tmp)//C_NULL_CHAR)
     end do
-    if(nargs>1) call haveArgs()
+    if(nargs>0) call haveArgs()
     if (present (source)) call doc (source)
   end subroutine sep_init
 

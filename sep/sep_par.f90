@@ -672,7 +672,6 @@ subroutine initpar()
   call get_command_argument(0,nm)
   call init_args(trim(nm)//C_NULL_CHAR)
   nm=trim(nm)//C_NULL_CHAR
-  write(0,*) "what do i see",COMMAND_ARGUMENT_COUNT()
   DO I=1,COMMAND_ARGUMENT_COUNT()
     CALL GET_COMMAND_ARGUMENT(I,nm)
     call getch_add_string(trim(nm)//C_NULL_CHAR)
