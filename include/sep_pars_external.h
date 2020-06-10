@@ -1,6 +1,7 @@
 #ifndef SEP_PARS_EXTERNAL_H
 #define SEP_PARS_EXTERNAL_H
 #include <prototypes.h>
+#include <stdbool.h>
 #include <stdio.h>
 
 #ifdef __cplusplus
@@ -24,6 +25,7 @@ void initFromArgs(const int argc, const char **argv);
 void initFromName(const char *name);
 int getSepArgC();
 char **getSepArgV();
+bool doDoc();
 
 #ifdef __cplusplus
 }

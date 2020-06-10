@@ -238,7 +238,7 @@ char first[1024];
 
 
 
-  if ( getSepArgC() == 1  &&  !redin() && !redout() ){
+  if ( doDoc() == 1  &&  !redin() && !redout() ){
   if(prog_list!=0)  page_doc();
 else{
 		if( strncmp(name,"/*",2) == 0 ||    /* C comment */
