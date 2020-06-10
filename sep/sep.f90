@@ -587,10 +587,12 @@ contains
     call get_command_argument(0,tmp)
     call init_args(trim(tmp))
     nargs = command_argument_count()
+   write(0,*) "nargs",nargs
     do i=1,nargs
        call get_command_argument(i,tmp)
        call getch_add_string(trim(tmp)//C_NULL_CHAR)
     end do
+    if(nargs>1) call haveArgs()
     if (present (source)) call doc (source)
   end subroutine sep_init
 
@@ -1060,6 +1062,7 @@ contains
       end if
     end if
   end  subroutine from_either_real
+
 
   subroutine from_either_bool (name, value, default)
     character (len = *), intent (in)  :: name

@@ -89,6 +89,10 @@ interface
     integer(C_INT),intent(in) ,value:: sz
   end function
 
+  subroutine haveArgs() bind(c,name="haveArgs")
+    import
+  end subroutine
+
   integer function sreed_window_f(tag,nd,ng,n,f,j,sz,buf) bind(c,name="sreed_window")
     import
     character(C_CHAR),dimension(*), intent(in) :: tag
