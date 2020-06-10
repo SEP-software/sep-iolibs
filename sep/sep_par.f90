@@ -511,8 +511,9 @@ end function
 integer function put_l_f(arg,typ,val)
   character(len=*) arg,typ
   logical :: val
-  logical*1 :: v2
-  v2=val
+  integer :: v2
+  v2=0
+  if(val) v2=1
   put_l_f= putch_l_f(trim(arg)//C_NULL_CHAR,trim(typ)//C_NULL_CHAR,v2)
 end function
 
