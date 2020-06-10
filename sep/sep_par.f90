@@ -95,7 +95,7 @@ interface
     integer function putch_l_f(arg,typ,val) bind(c,name="putch_l_f")
     import
     character(C_CHAR),dimension(*) ::arg,typ
-    logical(C_BOOL) :: val
+    integer :: val
   end function
     integer function putch_g_f(arg,typ,val) bind(c,name="putch_g_f")
     import
@@ -288,7 +288,7 @@ interface
     integer function auxputch_l_f(arg,typ,val,tag) bind(c,name="auxputch_l_f")
     import
     character(C_CHAR),dimension(*) ::arg,typ,tag
-    logical(C_BOOL) :: val
+    integer  :: val
   end function
     integer function auxputch_g_f(arg,typ,val,tag) bind(c,name="auxputch_g_f")
     import
@@ -513,7 +513,7 @@ integer function put_l_f(arg,typ,val)
   logical :: val
   integer :: v2
   v2=0
-  if(val) v2=1
+  if(val) v2=1;
   put_l_f= putch_l_f(trim(arg)//C_NULL_CHAR,trim(typ)//C_NULL_CHAR,v2)
 end function
 
@@ -620,8 +620,9 @@ end function
 integer function auxpu_l_f(arg,typ,val,tag)
   character(len=*) arg,typ,tag
   logical :: val
-  logical*1:: v2
-  v2=val
+  integer :: v2
+  v2=0
+  if(val) v2=1;
   auxpu_l_f= auxputch_l_f(trim(arg)//C_NULL_CHAR,trim(typ)//C_NULL_CHAR,v2,trim(tag)//C_NULL_CHAR)
 end function
 integer function auxpu_i_f(arg,typ,val,tag)
