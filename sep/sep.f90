@@ -587,7 +587,6 @@ contains
     call get_command_argument(0,tmp)
     call init_args(trim(tmp))
     nargs = command_argument_count()
-   write(0,*) "nargs",nargs
     do i=1,nargs
        call get_command_argument(i,tmp)
        call getch_add_string(trim(tmp)//C_NULL_CHAR)
