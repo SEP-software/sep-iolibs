@@ -35,6 +35,7 @@ public:
   }
   void getArg(const int iarg, char *buf)
   {
+    fprintf(stderr, "in here %d %s\n", iarg, sepArgV[iarg]);
     if (iarg >= sepArgC)
       strcpy(buf, "");
     else
