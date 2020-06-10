@@ -450,16 +450,16 @@ module sep3d_struct_mod
     !initial and sampling  of regular axes
     character(len=128),dimension(:),pointer::label,unit 
     !label and unit for axes
-    integer :: nkeys,ndims           !number of keys and regular dimensions
+    integer :: nkeys=0,ndims=0         !number of keys and regular dimensions
     integer :: drn !data record number (-1 if in same order)
     integer :: ntraces ! number of traces in the dataset
     character(len=128),pointer,dimension(:) :: keyname,keytype,keyfmt
 !keyname,type and format
-    character(len=128) :: usage 
+    character(len=128) :: usage="UNDEFINED" 
     !usage (INPUT,OUTPUT,SCRATCH) for dataset
-    character(len=128) :: data_format 
+    character(len=128) :: data_format="UNDEFINED"
     !data format (FLOAT,BYTE,COMPLEX,INTEGER)
-    character(len=128) :: file_format 
+    character(len=128) :: file_format="UNDEFINED"
     !file format (REGULAR,HEADER,GRID)
   end type
   interface init_sep3d
