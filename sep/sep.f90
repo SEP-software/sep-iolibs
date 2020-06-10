@@ -584,7 +584,7 @@ contains
     ! call initpar ()
     character (len=9998) :: tmp
     integer :: nargs, i
-    call get_command_argument(0,tmp//C_NULL_CHAR)
+    call get_command_argument(0,trim(tmp)//C_NULL_CHAR)
     write(0,*) "I see the name as",tmp
     call init_args(trim(tmp))
     nargs = command_argument_count()
