@@ -163,7 +163,8 @@ void page_doc();
 #endif
 
 _XFUNCPROTOBEGIN
-void sep_add_doc_line(const char *line) _XFUNCPROTOEND {
+void sep_add_doc_line(const char *line) _XFUNCPROTOEND
+{
 
   sep_self_doc *newinf;
 
@@ -173,22 +174,27 @@ void sep_add_doc_line(const char *line) _XFUNCPROTOEND {
   newinf->next = 0;
 }
 _XFUNCPROTOBEGIN
-sep_self_doc *get_last_doc_line(void) _XFUNCPROTOEND {
+sep_self_doc *get_last_doc_line(void) _XFUNCPROTOEND
+{
   sep_self_doc *cur, *newinf, *last;
   int i;
 
   cur = prog_list;
   i = 0;
-  while (cur != 0) {
+  while (cur != 0)
+  {
     last = cur;
     cur = cur->next;
     i++;
   }
 
-  if (i == 0) {
+  if (i == 0)
+  {
     newinf = (sep_self_doc *)malloc(sizeof(sep_self_doc));
     prog_list = newinf;
-  } else {
+  }
+  else
+  {
     newinf = (sep_self_doc *)malloc(sizeof(sep_self_doc));
     last->next = newinf;
   }
@@ -220,10 +226,12 @@ int doc(name) char *name;
 #endif
   char first[1024];
 
-  if (getSepArgC() == 1 && !redin()) {
+  if (doDoc() == 1 && !redin())
+  {
     if (prog_list != 0)
       page_doc();
-    else {
+    else
+    {
       if (strncmp(name, "/*", 2) == 0 || /* C comment */
           strncmp(name, "#", 1) == 0 ||  /* ratfor comment */
           strncmp(name, "!", 1) == 0 ||  /* fortran90 comment */
@@ -241,33 +249,40 @@ int doc(name) char *name;
         /*	morein = popen("sh -c 'more 1>&2'","w");  */
         /* 							*/
         /* Better method from Jeff Thorson:			*/
-        if (-1 == dup2(2, 1)) {
+        if (-1 == dup2(2, 1))
+        {
           perror("doc()");
           seperr("doc(): dup2 bomb\n");
         }
-        if (NULL == (morein = popen("more", "w"))) {
+        if (NULL == (morein = popen("more", "w")))
+        {
           perror("doc()");
           seperr("doc() unable to pipe to more command\n");
         }
         while (c = *(name++))
           putc(c, morein);
-        if (ferror(morein)) {
+        if (ferror(morein))
+        {
           perror("doc()");
           seperr("doc() I/O error piping to more command\n");
         }
         pclose(morein);
         exit(1);
-      } else {
+      }
+      else
+      {
         char *doc_name = NULL;
 
         doc_name = find_doc(name);
 
-        if ((s = fopen(doc_name, "r")) == NULL) {
+        if ((s = fopen(doc_name, "r")) == NULL)
+        {
           perror("doc()");
           seperr("doc() source not at  %s \n", name);
         }
         first[0] = '\0';
-        if (((char *)NULL) == fgets(first, 5, s)) {
+        if (((char *)NULL) == fgets(first, 5, s))
+        {
           perror("doc read problem ");
         }
         if (0 == strncmp(first, "!!$", 3) || 0 == strncmp(first, "#$", 2) ||
@@ -284,7 +299,8 @@ int doc(name) char *name;
 
         dup2(2, 1);
         /*			if(NULL == (morein = popen("more","w")))*/
-        if (NULL == (morein = popen(first, "w"))) {
+        if (NULL == (morein = popen(first, "w")))
+        {
           perror("doc()");
           seperr("doc() unable to pipe to more command\n");
         }
@@ -295,13 +311,15 @@ int doc(name) char *name;
                !(c1 == '#' && c == '%') && /* end of ratfor */
                !(c1 == '*' && c == '/'))   /* end of C */
         {
-          if (ferror(s)) {
+          if (ferror(s))
+          {
             perror("doc()");
             seperr("doc() I/O error reading source file %s\n", name);
           }
           c1 = c;
           putc(c, morein);
-          if (ferror(morein)) {
+          if (ferror(morein))
+          {
             perror("doc()");
             seperr("doc() I/O error piping to more command\n");
           }
@@ -332,11 +350,13 @@ char *find_doc(name) char *name;
   strcpy(base, DEFAULT_DOC_PATH);
 
   /* name begins with / */
-  if (name[0] == '/') {
+  if (name[0] == '/')
+  {
     /*check to see if the base name is the same as DEFAULT_DOC_PATH*/
     myl = 0;
     i = 0;
-    while (i < MIN(strlen(base), strlen(name)) && myl == 0) {
+    while (i < MIN(strlen(base), strlen(name)) && myl == 0)
+    {
       if (base[i] != name[i])
         myl = 1;
       i += 1;
@@ -348,11 +368,13 @@ char *find_doc(name) char *name;
     for (j = i; j < strlen(name); j++)
       name2[j - i] = name[j];
     name2[j - i] = '\0';
-  } else
+  }
+  else
     strcpy(name2, name);
   /* search path */
   path_index = 0;
-  while ((path = get_doc_path(path_index)) != NULL) {
+  while ((path = get_doc_path(path_index)) != NULL)
+  {
     strcpy(file_name, path);
     strcat(file_name, "/");
     strcat(file_name, name2);
@@ -391,7 +413,8 @@ char *get_doc_path(index) int index;
   strcat(path, ":");
   strcat(path, DEFAULT_SEP_PATH);
 
-  if ((doc_path = getenv("SEP_DOC_PATH")) != NULL) {
+  if ((doc_path = getenv("SEP_DOC_PATH")) != NULL)
+  {
     /* add the environment variable */
     strcat(path, ":");
     strcat(path, doc_path);
@@ -399,7 +422,8 @@ char *get_doc_path(index) int index;
 
   q = p = path;
 
-  while (index-- >= 0) {
+  while (index-- >= 0)
+  {
     q = p;
     p = strchr(p, ':');
     if (p == NULL)
@@ -430,7 +454,8 @@ SEP: Einar Kjartansson, Stew Levin CWP: Jack Cohen, Shuki Ronen
 HRC: Lyle
 ****************************************************************************/
 
-void page_doc(void) {
+void page_doc(void)
+{
   FILE *fp;
   char *pager;
   char cmd[32];
@@ -447,7 +472,8 @@ void page_doc(void) {
   /*  fp = popen("more -22 1>&2", "w"); */
   /*  fp = popen("more  1>&2", "w"); */
   fp = popen(cmd, "w");
-  while (line != 0) {
+  while (line != 0)
+  {
     (void)fprintf(fp, "%s\n", line->line);
     line = line->next;
   }
