@@ -584,7 +584,8 @@ contains
     ! call initpar ()
     character (len=9998) :: tmp
     integer :: nargs, i
-    call get_command_argument(0,tmp)
+    call get_command_argument(0,tmp//C_NULL_CHAR)
+    write(0,*) "I see the name as",tmp
     call init_args(trim(tmp))
     nargs = command_argument_count()
     do i=1,nargs
@@ -592,7 +593,7 @@ contains
        call getch_add_string(trim(tmp)//C_NULL_CHAR)
     end do
     if(nargs>0) call haveArgs()
-    if (present (source)) call doc (source)
+    if (present (tmp)) call doc (tmp)
   end subroutine sep_init
 
 !!$
