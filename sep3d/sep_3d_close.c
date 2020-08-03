@@ -56,7 +56,8 @@ Purpose:
 #include <sep3d.h>
 #define EOL 014
 
-void sep3dClose(const char *tag) {
+void sep3dClose(const char *tag)
+{
   char *tag_header[1];
   char *tag_grid[1];
   char temp_ch[1024];
@@ -66,7 +67,7 @@ void sep3dClose(const char *tag) {
   off_t seekpos;
   time_t tempt;
   streaminf *info;
-
+  fprintf(stderr, "inc lose :%s:\n", tag);
   info_history = tag_info(tag, TAG_INQUIRE); /* get info on this tag */
   if (info_history == SEPPOINTNULL)
     seperr("Not a sepfile");
@@ -74,8 +75,10 @@ void sep3dClose(const char *tag) {
   if (0 != sep_get_header_format_tag(tag, tag_header))
     seperr("sep3dclose(): trouble getting tag_header \n");
   auxclose(tag_header[0]);
-  if ((info_history->gridformatfile) != SEPSTRNULL) {
-    if (0 == sep_get_grid_format_tag(tag, tag_grid)) {
+  if ((info_history->gridformatfile) != SEPSTRNULL)
+  {
+    if (0 == sep_get_grid_format_tag(tag, tag_grid))
+    {
 
       auxclose(tag_grid[0]);
       free(tag_grid[0]);
@@ -102,11 +105,13 @@ void sep_3d_close()
   off_t seekpos;
 
   /*CHECK TO SEE IF STDOUT IS BEING SENT DOWN PIPE */
-  if (1 == sep_tag_is_pipe("out")) {
+  if (1 == sep_tag_is_pipe("out"))
+  {
     info_history = tag_info("out", TAG_INQUIRE);
     /*FIRST DEAL WITH HEADER */
     if ((info_history->headerformatfile) != SEPSTRNULL &&
-        0 == getch("hff", "s", temp_ch)) {
+        0 == getch("hff", "s", temp_ch))
+    {
       hff = 1;
       /*WE ARE SENDING THE OUTPUT DOWN A PIPE AND DID NOT SPECIFY A HFF FILE
 ON THE COMMAND LINE. THIS MEANS WE CREATED A TEMP FILE IN
@@ -114,7 +119,8 @@ sep_get_header_format_tag. */
       if (0 != sep_get_header_format_tag("out", tag_header))
         seperr("sep_3d_close(): trouble getting tag_header \n");
       info_hff_in = tag_info(*tag_header, TAG_INQUIRE);
-      if (info_hff_in->headfile == (FILE *)0) {
+      if (info_hff_in->headfile == (FILE *)0)
+      {
         /*AUXCLOSE FOR THE HEADER FILE HAS ALREADY BEEN CALLED. THIS
 PROBABLY MEANS THAT SOMEONE HAS STARTED WRITING OUT HEADERS.
 LATER WE SHOULD SET THIS UP SO WE CAN COPY EVERYTHING THAT
@@ -130,7 +136,8 @@ AN ERROR */
     }
     /*NOW THE GRID*/
     if ((info_history->gridformatfile) != SEPSTRNULL &&
-        0 == getch("gff", "s", temp_ch)) {
+        0 == getch("gff", "s", temp_ch))
+    {
       gff = 1;
       /*WE ARE SENDING THE OUTPUT DOWN A PIPE AND DID NOT SPECIFY A GFF FILE
 ON THE COMMAND LINE. THIS MEANS WE CREATED A TEMP FILE IN
@@ -138,7 +145,8 @@ sep_get_grid_format_tag. */
       if (0 != sep_get_grid_format_tag("out", tag_grid))
         seperr("sep_3d_close(): trouble getting tag_grid \n");
       info_gff_in = tag_info(*tag_grid, TAG_INQUIRE);
-      if (info_gff_in->headfile == (FILE *)0) {
+      if (info_gff_in->headfile == (FILE *)0)
+      {
         /*AUXCLOSE FOR THE GRID FILE HAS ALREADY BEEN CALLED. THIS
 PROBABLY MEANS THAT SOMEONE HAS STARTED WRITING OUT GRID.
 LATER WE SHOULD SET THIS UP SO WE CAN COPY EVERYTHING THAT
@@ -161,13 +169,15 @@ AN ERROR */
   timeout = 5;
   getch("timeout", "i", &timeout);
 
-  if (hff == 1) {
+  if (hff == 1)
+  {
     if ((info_hff_out->sockfd = socklisten(info_hff_out->sockfd, timeout)) ==
         -1)
       seperr("sep_3d_close(): pipe synch failed for hff\n");
 
     info_hff_out->headfile = fdopen(info_hff_out->sockfd, "w");
-    if (info_hff_out->valid && info_hff_out->ioinf == 0) {
+    if (info_hff_out->valid && info_hff_out->ioinf == 0)
+    {
       (*info_hff_out->open_func)(info_hff_out, &(info_hff_out->ioinf));
     }
 
@@ -179,7 +189,8 @@ HFF FILE */
     if (0 != fseek(info_hff_in->headfile, (long)seekpos, whence))
       perror("file_seek");
 
-    while ((next = getc(info_hff_in->headfile)) != EOT && next != EOF) {
+    while ((next = getc(info_hff_in->headfile)) != EOT && next != EOF)
+    {
       /* read until we get an EOT or EOF */
       ierr = putc(next, info_hff_out->headfile);
     }
@@ -196,13 +207,15 @@ HFF FILE */
     strcpy(info_history->headerformatfile, "hff_out");
   }
 
-  if (gff == 1) {
+  if (gff == 1)
+  {
     if ((info_gff_out->sockfd = socklisten(info_gff_out->sockfd, timeout)) ==
         -1)
       seperr("sep_3d_close(): pipe synch failed for gff\n");
 
     info_gff_out->headfile = fdopen(info_gff_out->sockfd, "w");
-    if (info_gff_out->valid && info_gff_out->ioinf == 0) {
+    if (info_gff_out->valid && info_gff_out->ioinf == 0)
+    {
       (*info_gff_out->open_func)(info_gff_out, &(info_gff_out->ioinf));
     }
     /*AT THIS POINT WITH ANY LUCK WE HAVE ESTABLISHED COMMUNICATION. THE
@@ -213,7 +226,8 @@ HFF FILE */
     if (0 != fseek(info_gff_in->headfile, (long)seekpos, whence))
       perror("file_seek");
 
-    while ((next = getc(info_gff_in->headfile)) != EOT && next != EOF) {
+    while ((next = getc(info_gff_in->headfile)) != EOT && next != EOF)
+    {
       /* read until we get an EOT or EOF */
       ierr = putc(next, info_gff_out->headfile);
     }

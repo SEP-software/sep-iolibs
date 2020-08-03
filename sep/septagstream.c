@@ -61,35 +61,40 @@ enum tagtype type;
 {
   streaminf *curr;
 
+  fprintf(stderr, "in tagstream %s \n", tag);
   curr = sepstr_head();
 
-  while (curr != 0) {
-    if (strcmp(tag, curr->tagname) == 0) return curr;
+  while (curr != 0)
+  {
+    if (strcmp(tag, curr->tagname) == 0)
+      return curr;
     curr = curr->next;
   }
 
-  if (type == TAG_INQUIRE) return (0);
+  if (type == TAG_INQUIRE)
+    return (0);
   /* fell through so we must create it and put it at the end of the list*/
   curr = sepstr_new((char *)tag, type);
 
   sepstr_addend(curr);
 
-  switch (curr->entrytype) {
-    case STREAMIN:
-      sepstr_in_head(curr);
-      break;
-    case STREAMOUT:
-      sepstr_out_head(curr);
-      break;
-    case STREAMINOUT:
-      sepstr_inout_head(curr);
-      break;
-    case STREAMSOCKOUT:
-      sepstr_socket_head(curr);
-      break;
-    case STREAMSCR:
-      sepstr_scr_head(curr);
-      break;
+  switch (curr->entrytype)
+  {
+  case STREAMIN:
+    sepstr_in_head(curr);
+    break;
+  case STREAMOUT:
+    sepstr_out_head(curr);
+    break;
+  case STREAMINOUT:
+    sepstr_inout_head(curr);
+    break;
+  case STREAMSOCKOUT:
+    sepstr_socket_head(curr);
+    break;
+  case STREAMSCR:
+    sepstr_scr_head(curr);
+    break;
   }
 
   return curr;
@@ -108,8 +113,10 @@ streaminf *fd_info(fd) int fd;
 
   curr = sepstr_head();
 
-  while (curr != 0) {
-    if (fd == fileno(curr->streamfile)) {
+  while (curr != 0)
+  {
+    if (fd == fileno(curr->streamfile))
+    {
       return curr;
     }
     curr = curr->next;
