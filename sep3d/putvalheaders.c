@@ -94,14 +94,12 @@ int sep_put_val_headers(const char *tag_history, const int *record_number, const
    {
       return ierr;
    }
-   fprintf(stderr, "what the 1 \n");
    /* Read number of bytes per header record */
    ierr = sep_get_header_bytes(tag_history, &n_head_bytes);
    if (ierr != 0)
    {
       return ierr;
    }
-   fprintf(stderr, "what the %d \n", n_head_bytes);
 
    n_bytes_value = n_head_bytes * (*n_headers);
    seek_byte = n_head_bytes * ((*record_number) - 1);
@@ -115,7 +113,6 @@ int sep_put_val_headers(const char *tag_history, const int *record_number, const
   */
 
    /* rite Header Records */
-   fprintf(stderr, "beore the write %d\n", n_bytes_value);
    if (srite(*tag_header, header_values, n_bytes_value) != n_bytes_value)
    {
       seperr("sep_put_val_headers: srite error \n");
