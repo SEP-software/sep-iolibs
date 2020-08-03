@@ -62,32 +62,42 @@ WHERE
 #include <sep_main_external.h>
 
 #if NeedFunctionPrototypes
-_XFUNCPROTOBEGIN 
-int auxclose( const char *name)
-_XFUNCPROTOEND 
+_XFUNCPROTOBEGIN
+int auxclose(const char *name)
+    _XFUNCPROTOEND
 #else
-int auxclose(name)
-char *name;
+int auxclose(name) char *name;
 #endif
 {
-    streaminf *info;
+     streaminf *info;
+     fprintf(stderr, "in auxclose %s\n", name);
+     if ((info = tag_info(name, TAG_INQUIRE)) != 0)
+     {
 
-    if( (info =tag_info(name,TAG_INQUIRE)) != 0 ){
+          if (info->headerbuf != 0)
+               free(info->headerbuf);
+          if (info->entrytype == STREAMIN)
+          {
+               if (info->headfile != 0)
+                    fclose(info->headfile);
+          }
+          else
+          {
+               if (info->headfile != 0)
+               {
+                    fflush(info->headfile);
+                    fclose(info->headfile);
+               }
+          }
+          if (info->close_func != 0)
+               (*info->close_func)(info, info->ioinf);
+          if (info->headername != 0)
+               free(info->headername);
+          if (info->dataname != 0)
+               free(info->dataname);
 
-     if( info->headerbuf != 0 ) free(info->headerbuf);
-     if( info->entrytype == STREAMIN ){
-	if( info->headfile != 0 ) fclose(info->headfile);
-     }else{
-	if( info->headfile != 0 ) { 
-	    fflush( info->headfile);fclose(info->headfile);
-        }
+          sepstr_del(info);
+          free(info);
      }
-     if( info->close_func != 0 ) (*info->close_func)(info, info->ioinf );
-     if( info->headername != 0 ) free( info->headername);
-     if( info->dataname != 0 ) free( info->dataname);
-
-     sepstr_del( info );
-     free(info);
-   }
-	return(0);
+     return (0);
 }
