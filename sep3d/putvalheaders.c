@@ -81,29 +81,32 @@ AUTHOR
 */
 #include "sep3d.h"
 
-int sep_put_val_headers(const char *tag_history,const  int *record_number, const int *n_headers,
-                        void *header_values) 
+int sep_put_val_headers(const char *tag_history, const int *record_number, const int *n_headers,
+                        void *header_values)
 {
-  char *tag_header[1];
-  int n_bytes_value, n_head_bytes, seek_byte;
-  int ierr;
+   char *tag_header[1];
+   int n_bytes_value, n_head_bytes, seek_byte;
+   int ierr;
 
-  /* Get tag_header and check for returning errors */
-  ierr = sep_get_header_format_tag(tag_history, tag_header);
-  if (ierr != 0) {
-    return ierr;
-  }
+   /* Get tag_header and check for returning errors */
+   ierr = sep_get_header_format_tag(tag_history, tag_header);
+   if (ierr != 0)
+   {
+      return ierr;
+   }
+   fprintf(stderr, "what the 1 \n");
+   /* Read number of bytes per header record */
+   ierr = sep_get_header_bytes(tag_history, &n_head_bytes);
+   if (ierr != 0)
+   {
+      return ierr;
+   }
+   fprintf(stderr, "what the %d \n", n_head_bytes);
 
-  /* Read number of bytes per header record */
-  ierr = sep_get_header_bytes(tag_history, &n_head_bytes);
-  if (ierr != 0) {
-    return ierr;
-  }
+   n_bytes_value = n_head_bytes * (*n_headers);
+   seek_byte = n_head_bytes * ((*record_number) - 1);
 
-  n_bytes_value = n_head_bytes * (*n_headers);
-  seek_byte = n_head_bytes * ((*record_number) - 1);
-
-  /*
+   /*
      if(-1==sseek_block(*tag_header,n_head_bytes,((*record_number)-1),0)){
        fprintf(stderr,"call %s %d %d
      \n",tag_history,n_head_bytes,*record_number); seperr("sep_put_val_headers:
@@ -111,11 +114,13 @@ int sep_put_val_headers(const char *tag_history,const  int *record_number, const
      }
   */
 
-  /* rite Header Records */
-  if (srite(*tag_header, header_values, n_bytes_value) != n_bytes_value) {
-    seperr("sep_put_val_headers: srite error \n");
-  }
+   /* rite Header Records */
+   fprintf(stderr, "beore the write %d\n", n_bytes_value);
+   if (srite(*tag_header, header_values, n_bytes_value) != n_bytes_value)
+   {
+      seperr("sep_put_val_headers: srite error \n");
+   }
 
-  free(*tag_header);
-  return 0;
+   free(*tag_header);
+   return 0;
 }
