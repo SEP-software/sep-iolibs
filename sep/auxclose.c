@@ -70,7 +70,7 @@ int auxclose(name) char *name;
 #endif
 {
      streaminf *info;
-     fprintf(stderr, "in auxclose %s\n", name);
+
      if ((info = tag_info(name, TAG_INQUIRE)) != 0)
      {
 

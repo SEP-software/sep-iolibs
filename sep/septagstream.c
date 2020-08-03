@@ -61,7 +61,6 @@ enum tagtype type;
 {
   streaminf *curr;
 
-  fprintf(stderr, "in tagstream %s \n", tag);
   curr = sepstr_head();
 
   while (curr != 0)

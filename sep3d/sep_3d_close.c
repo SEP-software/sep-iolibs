@@ -67,7 +67,7 @@ void sep3dClose(const char *tag)
   off_t seekpos;
   time_t tempt;
   streaminf *info;
-  fprintf(stderr, "inc lose :%s:\n", tag);
+
   info_history = tag_info(tag, TAG_INQUIRE); /* get info on this tag */
   if (info_history == SEPPOINTNULL)
     seperr("Not a sepfile");
