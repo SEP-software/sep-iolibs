@@ -15,13 +15,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
 
 
-find_package(TIRPC)
-if(${TIRPC_FOUND}) 
-  include_directories(${TIRPC_INCLUDE_DIRS})
-  set(TIRPC ${TIRPC_LIBRARIES})
-else()
-  set(TIRPC "")
-endif()
 
 FLEX_TARGET(MyScanner ${CMAKE_CURRENT_SOURCE_DIR}/sepgetpar_scan.l ${CMAKE_CURRENT_BINARY_DIR}/sepgetpar_scan.c)
 
