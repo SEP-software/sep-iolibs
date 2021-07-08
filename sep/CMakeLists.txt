@@ -15,6 +15,13 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
 
 
+find_package(TIRPC)
+if(${TIRPC_INCLUDE_DIRS}) 
+  include_directories(${TIRPC_INCLUDE_DIRS})
+  set(TIRPC ${TIRPC_LIBRARIES})
+else()
+  set(TIRPC "")
+endif()
 
 FLEX_TARGET(MyScanner ${CMAKE_CURRENT_SOURCE_DIR}/sepgetpar_scan.l ${CMAKE_CURRENT_BINARY_DIR}/sepgetpar_scan.c)
 
@@ -57,7 +64,7 @@ set(INCLUDES commands.h)
 
 add_library(sep ${SOURCES} ${INCLUDES} )
 SET_TARGET_PROPERTIES(sep PROPERTIES LINKER_LANGUAGE Fortran)
-target_link_libraries(sep m)
+target_link_libraries(sep ${TIRPC} m)
 
 target_include_directories(sep  
 	PRIVATE          
