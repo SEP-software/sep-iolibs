@@ -1,4 +1,5 @@
 #include "commands.h"
+#include <cstdlib>
 #include "sep_pars_external.h"
 
 std::shared_ptr<sepCommands> sepCommands::instance = nullptr;
