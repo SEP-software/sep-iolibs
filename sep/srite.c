@@ -128,6 +128,7 @@ Modified: Robert CLapp 06/01/97
 #if defined(HAVE_RPC_TYPES_H) || defined(__APPLE__)
 #include <rpc/types.h>
 #endif
+#include <rpc/xdr.h>
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
