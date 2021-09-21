@@ -1,3 +1,0 @@
-[submodule "external/genericIO"]
-	path = external/genericIO
-	url = http://cees-gitlab.stanford.edu/bob/genericIO.git
