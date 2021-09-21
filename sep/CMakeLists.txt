@@ -57,7 +57,7 @@ set(INCLUDES commands.h)
 
 add_library(sep ${SOURCES} ${INCLUDES} )
 SET_TARGET_PROPERTIES(sep PROPERTIES LINKER_LANGUAGE Fortran)
-target_link_libraries(sep m)
+target_link_libraries(sep ${TIRPC} m)
 
 target_include_directories(sep  
 	PRIVATE          
