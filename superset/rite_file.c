@@ -70,8 +70,13 @@ int ith;
 
 sep_3d *info;
 int i,tot,ierr,in_order;
+int n=1;
+float o=0.,d=1.;
 float one;
 char temp_ch[1024],temp_name[2049],temp2_ch[1024];
+char label[26],unit[26];
+strcpy(label,"");
+strcpy(unit,"");
 
 
 info = tag_info_sep3d(sep3dname, INQUIRE);  /* get info on this tag */
@@ -126,12 +131,19 @@ if(info->file_format!=REGULAR){
 		if(SUCCESS!=fget_header_format_tag(tag,temp_ch))
 			return(sepwarn(FAIL_OTHER,
     	"trouble obtaining header format tag for tag %s \n",tag));
-
+            
 		for(i=2; i<=info->ndims;i++){
 			ierr=sep3d_rite_axis(temp_ch,i,info->n[i-1],info->o[i-1],info->d[i-1],
      info->label[i-1],info->unit[i-1]);
 		 if(ierr!=0) return(ierr);
+}
+            
+		for(i=info->ndims;i<9 ;i++){
+			ierr=sep3d_rite_axis(temp_ch,i,n,o,d,label,unit);
+		 if(ierr!=0) return(ierr);
 		}
+             
+	      
 	}
 
   if(sep3d_grab_inorder(info->name,&in_order)!=0)
