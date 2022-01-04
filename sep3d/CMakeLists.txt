@@ -52,8 +52,10 @@ target_link_libraries(sep3d sep)
 SET_TARGET_PROPERTIES(sep3d PROPERTIES LINKER_LANGUAGE Fortran)
 target_include_directories(
   sep3d
-  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../include
   PUBLIC $<INSTALL_INTERFACE:include>
          $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/../>
-         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
+         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>
+
+	 )
 install(TARGETS sep3d DESTINATION lib EXPORT SEPlibTargets)
