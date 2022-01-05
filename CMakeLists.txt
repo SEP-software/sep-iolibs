@@ -1,3 +1,4 @@
+
 if(POLICY CMP0048)
   cmake_policy(SET CMP0048 NEW)
 endif(POLICY CMP0048)
@@ -8,6 +9,7 @@ if(NOT SUBPACKAGE)
   option(BUILD_TEST "Build tests" OFF)
 endif()
 
+set(BUILD_SEP True)
 cmake_minimum_required(VERSION 3.2)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
