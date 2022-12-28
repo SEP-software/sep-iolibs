@@ -46,7 +46,6 @@ Opens up dataset of type STREAMSCR
 #if defined(HAVE_TIRPC_RPC_RPC_H) 
 #include <tirpc/rpc/types.h>
 #endif
-`
 #include "streamlist.h"
 #include "sep_main_internal.h"
 

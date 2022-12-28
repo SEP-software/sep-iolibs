@@ -103,12 +103,25 @@ check_include_files(ndir.h HAVE_NDIR_H)
 check_include_files(limits.h HAVE_LIMITS_H)
 check_include_files(errno.h HAVE_ERRNO_H)
 check_include_files(sys/socket.h HAVE_SYS_SOCKET_H)
+
+
+
+
 check_include_files(rpc/rpc.h HAVE_RPC_RPC_H)
-check_include_files(tirpc/rpc/rpc.h HAVE_TIRPC/RPC_RPC_H)
 check_include_files(rpc/types.h HAVE_RPC_TYPES_H)
 check_include_files(ctime.h HAVE_CTIME_H)
 check_include_files(utime.h HAVE_UTIME_H)
 
+Find_Package(TIRPC)
+if(${TIRPC_FOUND})
+  include_directories(${TIRPC_INCLUDE_DIRS})
+  message("IN TIRPCE FOUND")
+  set(TIRPC ${TIRPC_LIBRARIES})
+  set(HAVE_RPC_RPC_H 1)
+  set(HAVE_RPC_TYPES_H 1)
+else()
+  set(TIRPC "")
+endif()
 
 configure_file("${PROJECT_SOURCE_DIR}/sepConfig.h.in"
                "${PROJECT_BINARY_DIR}/sepConfig.h")
@@ -122,13 +135,6 @@ if(NOT TARGET genericCpp AND NOT SUBPACKAGE)
                     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 endif(NOT TARGET genericCpp AND NOT SUBPACKAGE)
 
-find_package(TIRPC)
-if(${TIRPC_FOUND})
-  include_directories(${TIRPC_INCLUDE_DIRS})
-  set(TIRPC ${TIRPC_LIBRARIES})
-else()
-  set(TIRPC "")
-endif()
 
 set(SUBPACKAGE true)
 add_subdirectory(sep)
