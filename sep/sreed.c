@@ -131,7 +131,15 @@ Modified: Robert Clapp 6-1-99 Switched to GNU Prototypes
 #if defined(HAVE_RPC_TYPES_H) || defined(__APPLE__)
 #include <rpc/types.h>
 #endif
+#if defined(HAVE_RPC_RPC_H) || defined(__APPLE__)
 #include <rpc/xdr.h>
+#endif
+
+#if defined(HAVE_TIRPC_RPC_RPC_H) 
+#include <tirpc/rpc/types.h>
+#include <tirpc/rpc/xdr.h>
+#endif
+
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN

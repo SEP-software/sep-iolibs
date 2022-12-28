@@ -38,7 +38,13 @@ Opens up dataset of type STREAMSOCKOUT
 #endif
 #endif
 
+#if defined(HAVE_RPC_RPC_H) || defined(__APPLE__)
 #include <rpc/types.h>
+#endif
+
+#if defined(HAVE_TIRPC_RPC_RPC_H) 
+#include <tirpc/rpc/types.h>
+#endif
 
 #include "streamlist.h"
 #include "sep_main_internal.h"

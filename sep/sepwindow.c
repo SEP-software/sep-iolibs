@@ -206,8 +206,15 @@ enum {
 #include <sys/socket.h>
 #include <sys/types.h>
 #else
+#if defined(HAVE_RPC_RPC_H) || defined(__APPLE__)
 #include <rpc/types.h>
 #endif
+#endif
+
+#if defined(HAVE_TIRPC_RPC_RPC_H) 
+#include <tirpc/rpc/types.h>
+#endif
+
 
 #if NeedFunctionPrototypes
 _XFUNCPROTOBEGIN
